@@ -1,19 +1,26 @@
 package com.example.jl.lilprinter.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.example.jl.lilprinter.R;
+import com.example.jl.lilprinter.model.Printer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private ArrayList<Printer> printers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,26 +30,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        printers = new ArrayList<>();
+        createPrinters();
     }
 
+    private void createPrinters() {
+        Printer woodys = new Printer();
+        woodys.setLat(33.778967);
+        woodys.setLng(-84.406499);
+        printers.add(woodys);
+    }
 
-    /**
-     * Manipulates the map once available.
+    /**.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Printer woodys = printers.get(0);
+        LatLng woodys_latlng = new LatLng(woodys.getLat(), woodys.getLng());
+        Marker woodys_marker = mMap.addMarker(new MarkerOptions().position(woodys_latlng));
+        woodys_marker.setTag(woodys);
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+              @Override
+              public boolean onMarkerClick(Marker marker) {
+                  //retrieve Printer from the marker
+                  Printer printer = (Printer) marker.getTag();
+
+                  Intent intent = new Intent(MapsActivity.this, PrinterViewActivity.class);
+                  intent.putExtra("printer", printer);
+                  startActivity(intent);
+                  return false;
+              }
+          });
+
     }
 }
 

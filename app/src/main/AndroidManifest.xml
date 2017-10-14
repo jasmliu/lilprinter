@@ -24,6 +24,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.PrinterViewActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAFf9nwOeAsYt7HJz6Kte_pvsO2-T253s"/>

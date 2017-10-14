@@ -5,4 +5,9 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jl.lilprinter.activity.MapsActivity" />
+    tools:context="com.example.jl.lilprinter.activity.MapsActivity"
+
+    map:cameraTargetLat="33.7756"
+    map:cameraTargetLng="-84.3963"
+    map:cameraZoom="16"
+    />
