@@ -48,10 +48,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 72917b4d04ff5d5334cc20fac193087c1a87d443
 
         FloatingActionButton fabLogin = findViewById(R.id.fabLogin);
         fabLogin.setOnClickListener(new View.OnClickListener() {
