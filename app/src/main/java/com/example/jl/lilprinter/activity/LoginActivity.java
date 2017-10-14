@@ -16,6 +16,7 @@ import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        FirebaseApp.initializeApp(this);
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
@@ -47,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        Button loginButton = (Button) findViewById(R.id.btn_logLogin);
+        progressBar = findViewById(R.id.progressBar);
+        loginButton = findViewById(R.id.btn_logLogin);
 
         usernameEdit = findViewById(R.id.editTxt_logUsername);
         passwordEdit = findViewById(R.id.editTxt_logPassword);
