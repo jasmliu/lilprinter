@@ -60,22 +60,25 @@ public class ListActivity extends AppCompatActivity {
         mPrinterFirebaseAdapter = new FirebaseRecyclerAdapter<Printer, PrinterViewHolder>(options) {
             @Override
             public PrinterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                Log.d(TAG, "RECYCLERVIEWSUCCESS");
+                Log.d(TAG, "FIREBASERECYCLERSUCCESS");
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.printer_custom_row, parent, false);
                 return new PrinterViewHolder(view);
             }
 
             @Override
             protected void onBindViewHolder(PrinterViewHolder holder, int position, Printer printer) {
+                Log.d(TAG, "FIREBASERECYCLERFAIL");
                 holder.bind(printer);
             }
         };
 
         mPrinterRecyclerView.setAdapter(mPrinterFirebaseAdapter);
 
+        Log.d(TAG, "SETADAPTERSUCCESS");
         printerCloudEndPoint.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "VALUE EVENT LISTENER SUCCESS");
                 for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
                     Printer printer = printerSnapshot.getValue(Printer.class);
                     mPrinters.add(printer);
@@ -84,7 +87,7 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.getMessage());
+                Log.d(TAG, "CANCELED EVENT CANCELED");
             }
         });
 
