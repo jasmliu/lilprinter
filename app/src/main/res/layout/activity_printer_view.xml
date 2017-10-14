@@ -8,32 +8,35 @@
 
     <TextView
         android:id="@+id/txtView_status"
-        android:text="STATUS"
+        style="EditTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        style="EditTextStyle"/>
+        android:text="STATUS"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/txtView_color"
         android:text="BW or Color"
-        android:layout_below="@+id/txtView_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         style="EditTextStyle"
-        />
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/txtView_status"
+        android:layout_alignLeft="@+id/txtView_status"
+        android:layout_alignStart="@+id/txtView_status" />
 
     <TextView
         android:id="@+id/txtView_paper"
         android:text="Paper:"
-        android:layout_below="@+id/txtView_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
         style="EditTextStyle"
-        />
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/txtView_color"
+        android:layout_alignLeft="@+id/txtView_jam"
+        android:layout_alignStart="@+id/txtView_jam" />
 
     <ImageButton
         android:id="@+id/btn_paperStatus"
@@ -42,20 +45,19 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:typeface="monospace"
-        android:layout_below="@+id/txtView_color"
-        android:layout_toRightOf="@+id/txtView_status"
-        android:layout_toEndOf="@+id/txtView_status"
-        />
+        android:layout_alignTop="@+id/txtView_paper"
+        android:layout_toRightOf="@+id/txtView_color"
+        android:layout_toEndOf="@+id/txtView_color" />
 
     <TextView
         android:id="@+id/txtView_jam"
         android:text="Jam:"
-        android:layout_below="@+id/btn_paperStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
         style="EditTextStyle"
-        />
+        android:layout_alignTop="@+id/btn_jamStatus"
+        android:layout_alignLeft="@+id/txtView_color"
+        android:layout_alignStart="@+id/txtView_color" />
 
     <ImageButton
         android:id="@+id/btn_jamStatus"
@@ -64,32 +66,33 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:typeface="monospace"
-        android:layout_below="@+id/txtView_paper"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/btn_paperStatus"
         android:layout_alignLeft="@+id/btn_paperStatus"
-        android:layout_alignStart="@+id/btn_paperStatus"
-        android:layout_marginTop="9dp" />
+        android:layout_alignStart="@+id/btn_paperStatus" />
 
     <TextView
         android:id="@+id/txtView_ink"
         android:text="Ink:"
-        android:layout_below="@+id/btn_jamStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
         style="EditTextStyle"
-        />
+        android:layout_alignBottom="@+id/btn_inkStatus"
+        android:layout_alignLeft="@+id/txtView_jam"
+        android:layout_alignStart="@+id/txtView_jam" />
 
     <ImageButton
         android:id="@+id/btn_inkStatus"
-        android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:typeface="monospace"
-        android:layout_below="@+id/txtView_jam"
         android:layout_alignLeft="@+id/btn_jamStatus"
         android:layout_alignStart="@+id/btn_jamStatus"
-        android:layout_marginTop="9dp" />
+        android:layout_below="@+id/btn_jamStatus"
+        android:layout_marginTop="31dp"
+        android:background="#ffffff"
+        android:src="@drawable/checkmark"
+        android:typeface="monospace" />
+
 
 
 
