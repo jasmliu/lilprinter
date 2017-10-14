@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "707976249118",
+    "firebase_url": "https://lilprinter-132f0.firebaseio.com",
+    "project_id": "lilprinter-132f0",
+    "storage_bucket": "lilprinter-132f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707976249118:android:84978a038ed45b9d",
+        "android_client_info": {
+          "package_name": "com.example.jl.lilprinter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707976249118-7sgjofod8qhllajt972ub562oi3su9tk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jl.lilprinter",
+            "certificate_hash": "bdd3af8aaca8d4a314601faa2758cc1971e26864"
+          }
+        },
+        {
+          "client_id": "707976249118-3hseuhjjvbjsknqdj2nc9u44dvho96cn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxnn2ExWr06AeT70IHJJKkvDswsRTsnQo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707976249118-3hseuhjjvbjsknqdj2nc9u44dvho96cn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
