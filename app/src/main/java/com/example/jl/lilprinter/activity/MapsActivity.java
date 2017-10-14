@@ -11,6 +11,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -40,6 +41,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         woodys.setLat(33.778967);
         woodys.setLng(-84.406499);
         printers.add(woodys);
+
+        Printer library = new Printer();
+        library.setLat(33.774401);
+        library.setLng(-84.395841);
+        printers.add(library);
     }
 
     /**.
@@ -49,21 +55,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Printer woodys = printers.get(0);
-        LatLng woodys_latlng = new LatLng(woodys.getLat(), woodys.getLng());
-        Marker woodys_marker = mMap.addMarker(new MarkerOptions().position(woodys_latlng));
-        woodys_marker.setTag(woodys);
+        //restrict user panning
+        LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349),
+                new LatLng(33.781547, -84.390801));
+        mMap.setLatLngBoundsForCameraTarget(tech);
+
+        //center camera on current location. if not within tech bounds, center on tech
+
+        //creates markers from printers list
+        for (Printer p : printers) {
+            LatLng latlng = new LatLng(p.getLat(), p.getLng());
+            Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+            marker.setTag(p); //pairs marker with Printer object
+        }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
               @Override
               public boolean onMarkerClick(Marker marker) {
-                  //retrieve Printer from the marker
-                  Printer printer = (Printer) marker.getTag();
+              Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
 
-                  Intent intent = new Intent(MapsActivity.this, PrinterViewActivity.class);
-                  intent.putExtra("printer", printer);
-                  startActivity(intent);
-                  return false;
+              //view printer info
+              Intent intent = new Intent(MapsActivity.this, PrinterViewActivity.class);
+              intent.putExtra("printer", printer);
+              startActivity(intent);
+              return false;
               }
           });
 

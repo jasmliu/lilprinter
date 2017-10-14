@@ -24,7 +24,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.PrinterViewActivity"></activity>
+        <activity android:name=".activity.PrinterViewActivity"
+            android:label="ViewPrinter"
+            android:parentActivityName=".activity.MapsActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
