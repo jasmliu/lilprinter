@@ -7,10 +7,12 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by jav on 10/13/2017.
  */
 
-public abstract class User {
+//MAKE ABSTRACT AGAIN AT SOME POINT
+public class User {
 
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef = database.getReference("users");
+    private static int userID = 0;
     public String email;
     public String password;
 
@@ -22,13 +24,10 @@ public abstract class User {
         this.email = email;
         this.password = password;
 
-        myRef.child("email").setValue(email);
-        myRef.child("password").setValue(password);
+        myRef.child("" + userID).child("email").setValue(email);
+        myRef.child("" + userID++).child("password").setValue(password);
     }
 
-    private void writeNewUser(String email, String password) {
-
-    }
 
     public void viewMap() {
         //pull up viewmap screen
