@@ -15,6 +15,7 @@ import com.example.jl.lilprinter.data.PrinterAdapter;
 import com.example.jl.lilprinter.model.Printer;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,16 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
-    private static final String TAG = "ListActivity";
+    private static final String TAG = "ListActivityERROR";
 
     private DatabaseReference mDatabase;
     private DatabaseReference printerCloudEndPoint;
 
     private List<Printer> mPrinters;
 
-    private PrinterAdapter mPrinterAdapter;
+    private ChildEventListener mChildEventListener;
 
-    private FirebaseRecyclerAdapter mPrinterFirebaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,31 +48,9 @@ public class ListActivity extends AppCompatActivity {
         //list of printers pulled from database
         mPrinters = new ArrayList<>();
 
-        //recyclerview
-        RecyclerView mPrinterRecyclerView = findViewById(R.id.printer_recycler_view);
-        mPrinterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mPrinterRecyclerView.setHasFixedSize(true);
+        mPrinters.add(new Printer());
 
-        Query query = FirebaseDatabase.getInstance().getReference().child("printer");
-        FirebaseRecyclerOptions<Printer> options = new FirebaseRecyclerOptions.Builder<Printer>().setQuery(query, Printer.class).setLifecycleOwner(this).build();
-        Log.d(TAG, "RECYCLERVIEWSUCCESS");
-
-        mPrinterFirebaseAdapter = new FirebaseRecyclerAdapter<Printer, PrinterViewHolder>(options) {
-            @Override
-            public PrinterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                Log.d(TAG, "RECYCLERVIEWSUCCESS");
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.printer_custom_row, parent, false);
-                return new PrinterViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(PrinterViewHolder holder, int position, Printer printer) {
-                holder.bind(printer);
-            }
-        };
-
-        mPrinterRecyclerView.setAdapter(mPrinterFirebaseAdapter);
-
+        /*
         printerCloudEndPoint.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,9 +64,49 @@ public class ListActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, databaseError.getMessage());
             }
-        });
+        });*/
 
+        dataRead();
+        Log.v(TAG, "CHOCOLATE" + mPrinters.get(0));
+    }
 
+    private void dataRead() {
+        if (mChildEventListener == null) {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Printer value = dataSnapshot.getValue(Printer.class);
+                    Log.v(TAG, "SODA" + value.getLocation());
+                    Log.v(TAG, "COOKIE" + value);
+                    mPrinters.add(value);
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
+                        Printer printer = printerSnapshot.getValue(Printer.class);
+                        mPrinters.add(printer);
+                    }
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            printerCloudEndPoint.addChildEventListener(mChildEventListener);
+            Log.v(TAG, "CHOCOLATE" + Integer.toString(mPrinters.size()));
+        }
     }
 
 }
