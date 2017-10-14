@@ -36,6 +36,12 @@ public class Printer implements Parcelable {
         //this.inkStatus = inkStatus;
         this.lat = lat;
         this.lng = lng;
+
+//        FirebaseDatabase db = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = db.getReference("printers");
+//        ref.child(Integer.toString(id)).child("location").setValue(location);
+//        ref.child(Integer.toString(id)).child("type").setValue(type);
+//        ref.child(Integer.toString(id)).child("status").setValue(status);
     }
 
     public String getId() {
