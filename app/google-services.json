@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "707976249118-6pltbkuj67ho1u5khnbooj8k54c2ok7d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jl.lilprinter",
+            "certificate_hash": "b3e534d223032bc81dd2a55bc6d0964838c9e37f"
+          }
+        },
+        {
           "client_id": "707976249118-7sgjofod8qhllajt972ub562oi3su9tk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
