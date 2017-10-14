@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">LilPrinter</string>
     <string name="log_in">Log In</string>
-    <string name="title_activity_main1">MainActivity1</string>
 </resources>

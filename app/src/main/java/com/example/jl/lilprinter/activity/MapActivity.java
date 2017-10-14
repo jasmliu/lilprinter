@@ -3,16 +3,18 @@ package com.example.jl.lilprinter.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 
 import com.example.jl.lilprinter.R;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 public class MapActivity extends AppCompatActivity {
 
@@ -30,6 +32,7 @@ public class MapActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -52,5 +55,6 @@ public class MapActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
     }
 }

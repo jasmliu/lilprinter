@@ -9,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public abstract class User {
 
+
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef = database.getReference("users");
     public String email;
@@ -29,6 +30,7 @@ public abstract class User {
     private void writeNewUser(String email, String password) {
 
     }
+
 
     public void viewMap() {
         //pull up viewmap screen
