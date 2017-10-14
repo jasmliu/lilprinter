@@ -29,13 +29,30 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        if (getIntent().getExtras().getString("user").equals("ADMIN")) {
+            setContentView(R.layout.activity_maps_admin);
+        } else {
+            setContentView(R.layout.activity_maps_users);
+        }
+
+        if (getIntent().getExtras().getString("user").equals("ADMIN")) {
+            FloatingActionButton fabAddPrinter = findViewById(R.id.fabAddPrinter);
+            fabAddPrinter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                    intent.putExtra("user", getIntent().getExtras().getString("user"));
+                    startActivity(intent);
+                }
+            });
+        }
 
         FloatingActionButton fabLogin = findViewById(R.id.fabLogin);
         fabLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                intent.putExtra("user", getIntent().getExtras().getString("user"));
                 startActivity(intent);
             }
         });
@@ -46,6 +63,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ListActivity.class);
+                intent.putExtra("user", getIntent().getExtras().getString("user"));
                 startActivity(intent);
             }
         });
