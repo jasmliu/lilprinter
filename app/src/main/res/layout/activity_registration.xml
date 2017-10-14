@@ -5,14 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:visibility="gone" />
 
     <EditText
-        android:id="@+id/editTxt_logUsername"
+        android:id="@+id/editTxt_regUsername"
         android:hint="username"
         android:inputType="textPersonName"
         android:layout_alignParentTop="true"
@@ -23,10 +18,10 @@
         style="EditTextStyle"/>
 
     <EditText
-        android:id="@+id/editTxt_logPassword"
+        android:id="@+id/editTxt_regPassword"
         android:hint="password"
         android:inputType="textPassword"
-        android:layout_below="@+id/editTxt_logUsername"
+        android:layout_below="@+id/editTxt_regUsername"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,11 +29,11 @@
         style="EditTextStyle"/>
 
     <Button
-        android:id="@+id/btn_logLogin"
-        android:text="login"
+        android:id="@+id/btn_regLogin"
+        android:text="register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTxt_logPassword"
+        android:layout_below="@+id/editTxt_regPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:typeface="monospace"/>
