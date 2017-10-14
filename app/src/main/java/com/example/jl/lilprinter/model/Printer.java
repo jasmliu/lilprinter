@@ -54,14 +54,23 @@ public class Printer implements Parcelable {
         this.location = location;
     }
 
-    /*public String getColorType() {
-        return colorType;
+    public String getType() {
+        return type;
     }
 
-    public void setColorType(String colorType) {
-        this.colorType = colorType;
+    public void setType(String type) {
+        this.type = type;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    /*
     public boolean getPaperStatus() {
         return paperStatus;
     }
