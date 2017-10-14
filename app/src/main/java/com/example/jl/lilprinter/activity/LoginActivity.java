@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ import static com.example.jl.lilprinter.model.User.myRef;
 public class LoginActivity extends AppCompatActivity {
     private boolean isLoggedIn = false;
     public static final String MESSAGE = "ISLOGGEDIN";
+    private static final String TAG = "LoginActivity";
 
     private EditText usernameEdit, passwordEdit;
     private FirebaseAuth auth;
@@ -81,17 +83,16 @@ public class LoginActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 progressBar.setVisibility(View.GONE);
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        passwordEdit.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    //FirebaseUser user = mAuth.getCurrentUser();
+                                    //updateUI(user);
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
