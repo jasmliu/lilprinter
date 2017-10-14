@@ -7,12 +7,18 @@ package com.example.jl.lilprinter.model;
 public class Printer {
     private int id;
     private String location;
-    private String colorType;
+    private String colorType
+
+    private boolean printerStatus;
+    private boolean computerStatus;
+
     private boolean paperStatus;
     private boolean jamStatus;
     private boolean inkStatus;
 
-    public Printer() {}
+    public Printer() {
+        this(-1, "unknown", "unknown", true, true, true);
+    }
 
     public Printer(int id, String location, String colorType, boolean paperStatus, boolean jamStatus, boolean inkStatus) {
         this.id = id;
