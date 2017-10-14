@@ -31,7 +31,7 @@ import static com.example.jl.lilprinter.model.User.myRef;
 public class LoginActivity extends AppCompatActivity {
     private boolean isLoggedIn = false;
     public static final String MESSAGE = "ISLOGGEDIN";
-    private static final String TAG = "LoginActivity"
+    private static final String TAG = "LoginActivity";
 
     private EditText usernameEdit, passwordEdit;
     private FirebaseAuth auth;
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     Toast.makeText(LoginActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-                                 ?
+                                }
                             }
                         });
             }
