@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jl.lilprinter.activity.LoginActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="121dp" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:id="@+id/editTxt_logUsername"
+        android:hint="username"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="203dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        style="EditTextStyle"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTxt_logPassword"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/editTxt_logUsername"
+        android:layout_marginTop="10dp"
+        style="EditTextStyle"/>
+
+    <Button
+        android:id="@+id/btn_logLogin"
+        android:text="login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteY="338dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_below="@+id/editTxt_logPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:typeface="monospace"/>
+
+</RelativeLayout>
