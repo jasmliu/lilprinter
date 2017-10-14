@@ -32,7 +32,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (username.length() > 11) {
                     if (username.substring(username.length() - 11, username.length()).equals("@gatech.edu")) {
                         isLoggedIn = true;
-                        Intent intent = new Intent(v.getContext(), MapActivity.class);
+
+                        Intent intent = new Intent(v.getContext(), MapsActivity.class);
+
+
                         intent.putExtra(MESSAGE, isLoggedIn);
                         startActivity(intent);
                     }

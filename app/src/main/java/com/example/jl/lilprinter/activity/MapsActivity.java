@@ -2,7 +2,11 @@ package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
@@ -14,9 +18,9 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+
 
     private GoogleMap mMap;
 
@@ -26,6 +30,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        FloatingActionButton fabLogin = findViewById(R.id.fabLogin);
+        fabLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton fabList = findViewById(R.id.fabList);
+        fabList.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
