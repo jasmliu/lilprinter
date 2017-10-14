@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.jl.lilprinter.activity.ListActivity">
+    android:layout_height="match_parent">
 
-
-    <TableRow
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/printer_recycler_view"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-
-</TableLayout>
-
+</RelativeLayout>
