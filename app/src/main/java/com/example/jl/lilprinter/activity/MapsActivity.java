@@ -85,14 +85,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void createPrinters() {
         //todo: create printers from data file?
         Printer woodys = new Printer();
-        woodys.setId(1);
+        woodys.setId(Integer.toString(1));
         woodys.setLocation("woody's");
         woodys.setLat(33.778967);
         woodys.setLng(-84.406499);
         printers.add(woodys);
 
         Printer library = new Printer();
-        library.setId(2);
+        library.setId(Integer.toString(2));
         library.setLocation("library");
         library.setLat(33.774401);
         library.setLng(-84.395841);
