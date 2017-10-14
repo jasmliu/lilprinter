@@ -1,96 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#ffffff"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtView_status"
-        android:text="STATUS"
+        android:id="@+id/location"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        style="EditTextStyle"/>
-
-    <TextView
-        android:id="@+id/txtView_color"
-        android:text="BW or Color"
-        android:layout_below="@+id/txtView_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        style="EditTextStyle"
-        />
-
-    <TextView
-        android:id="@+id/txtView_paper"
-        android:text="Paper:"
-        android:layout_below="@+id/txtView_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        style="EditTextStyle"
-        />
-
-    <ImageButton
-        android:id="@+id/btn_paperStatus"
-        android:src="@drawable/checkmark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:typeface="monospace"
-        android:layout_below="@+id/txtView_color"
-        android:layout_toRightOf="@+id/txtView_status"
-        android:layout_toEndOf="@+id/txtView_status"
-        />
-
-    <TextView
-    android:id="@+id/txtView_jam"
-    android:text="Jam:"
-    android:layout_below="@+id/btn_paperStatus"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="150dp"
-    style="EditTextStyle"
-    />
-
-    <ImageButton
-        android:id="@+id/btn_jamStatus"
-        android:src="@drawable/checkmark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:typeface="monospace"
-        android:layout_below="@+id/txtView_paper"
-        android:layout_alignLeft="@+id/btn_paperStatus"
-        android:layout_alignStart="@+id/btn_paperStatus"
-        android:layout_marginTop="9dp" />
-
-    <TextView
-        android:id="@+id/txtView_ink"
-        android:text="Ink:"
-        android:layout_below="@+id/btn_jamStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        style="EditTextStyle"
-        />
-
-    <ImageButton
-        android:id="@+id/btn_inkStatus"
-        android:src="@drawable/checkmark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:typeface="monospace"
-        android:layout_below="@+id/txtView_jam"
-        android:layout_alignLeft="@+id/btn_jamStatus"
-        android:layout_alignStart="@+id/btn_jamStatus"
-        android:layout_marginTop="9dp" />
-
-
-
+        android:layout_height="wrap_content" />
 </RelativeLayout>
