@@ -37,12 +37,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void createPrinters() {
+        //todo: create printers from data file?
         Printer woodys = new Printer();
+        woodys.setLocation("woody's");
         woodys.setLat(33.778967);
         woodys.setLng(-84.406499);
         printers.add(woodys);
 
         Printer library = new Printer();
+        library.setLocation("library");
         library.setLat(33.774401);
         library.setLng(-84.395841);
         printers.add(library);
@@ -60,9 +63,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
 
-        //center camera on current location. if not within tech bounds, center on tech
+        //todo: center camera on current location. if not within tech bounds, center on tech
 
         //creates markers from printers list
+        //todo: set marker icons as printers (design)
         for (Printer p : printers) {
             LatLng latlng = new LatLng(p.getLat(), p.getLng());
             Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
