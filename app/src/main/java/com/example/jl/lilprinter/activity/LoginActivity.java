@@ -46,10 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         auth = FirebaseAuth.getInstance();
 
+        //if user is logged in, go to maps activity
+        /*
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, MapsActivity.class));
             finish();
-        }
+        }*/
 
         progressBar = findViewById(R.id.progressBar);
         loginButton = findViewById(R.id.btn_logLogin);
@@ -86,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
+                                    startActivity(new Intent(LoginActivity.this, MapsActivity.class));
                                     //FirebaseUser user = mAuth.getCurrentUser();
                                     //updateUI(user);
                                 } else {
