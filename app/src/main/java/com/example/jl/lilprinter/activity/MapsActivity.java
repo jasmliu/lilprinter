@@ -2,11 +2,9 @@ package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
@@ -17,6 +15,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
