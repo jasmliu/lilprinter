@@ -28,12 +28,16 @@
 
         <activity android:name=".activity.PrinterViewActivity"
             android:label="ViewPrinter"
-            android:parentActivityName=".activity.MapsActivity"></activity>
+            android:parentActivityName=".activity.MapsActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAFf9nwOeAsYt7HJz6Kte_pvsO2-T253s" />
 
+        <activity
+            android:name=".activity.RegistrationActivity"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
