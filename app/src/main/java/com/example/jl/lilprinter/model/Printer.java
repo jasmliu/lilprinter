@@ -7,7 +7,7 @@ package com.example.jl.lilprinter.model;
 public class Printer {
     private int id;
     private String location;
-    private String colorType
+    private String colorType;
 
     private boolean printerStatus;
     private boolean computerStatus;
