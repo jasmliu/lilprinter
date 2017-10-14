@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Printer implements Parcelable {
-    private int id;
+    private String id;
     private String location;
     private String type;
 
@@ -23,10 +23,10 @@ public class Printer implements Parcelable {
     private double lng;
 
     public Printer() {
-        this(-1, "unknown", "unknown", true, 0, 0);
+        this("", "unknown", "unknown", true, 0, 0);
     }
 
-    public Printer(int id, String location, String type, boolean status, double lat, double lng) {
+    public Printer(String id, String location, String type, boolean status, double lat, double lng) {
         this.id = id;
         this.location = location;
         this.type = type;
@@ -38,11 +38,11 @@ public class Printer implements Parcelable {
         this.lng = lng;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -109,7 +109,7 @@ public class Printer implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeString(location);
         dest.writeString(type);
         dest.writeBooleanArray(new boolean[] {status});
@@ -128,7 +128,7 @@ public class Printer implements Parcelable {
     };
 
     private Printer(Parcel in) {
-        id = in.readInt();
+        id = in.readString();
         location = in.readString();
         type = in.readString();
         boolean[] boolArr = new boolean[1];

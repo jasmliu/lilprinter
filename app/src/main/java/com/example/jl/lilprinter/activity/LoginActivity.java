@@ -29,8 +29,6 @@ import static com.example.jl.lilprinter.model.User.database;
 import static com.example.jl.lilprinter.model.User.myRef;
 
 public class LoginActivity extends AppCompatActivity {
-    private boolean isLoggedIn = false;
-    public static final String MESSAGE = "ISLOGGEDIN";
     private static final String TAG = "LoginActivity";
 
     private EditText usernameEdit, passwordEdit;
