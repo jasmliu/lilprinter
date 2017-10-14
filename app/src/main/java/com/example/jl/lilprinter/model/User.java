@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 //MAKE ABSTRACT AGAIN AT SOME POINT
 public class User {
 
+
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef = database.getReference("users");
     private static int userID = 0;
@@ -27,6 +28,7 @@ public class User {
         myRef.child("" + userID).child("email").setValue(email);
         myRef.child("" + userID++).child("password").setValue(password);
     }
+
 
 
     public void viewMap() {

@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (username.substring(username.length() - 11, username.length()).equals("@gatech.edu")) {
                         final String user = username.substring(0, username.length()-11);
                         isLoggedIn = true;
-                        Intent intent = new Intent(v.getContext(), MapActivity.class);
 
                         DatabaseReference userInfo = myRef.child("123").child("email");
 
@@ -63,9 +62,10 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
 
+
                             }
                         });
-
+                        Intent intent = new Intent(v.getContext(), MapsActivity.class);
                         intent.putExtra(MESSAGE, isLoggedIn);
                         startActivity(intent);
                     }
