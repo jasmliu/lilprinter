@@ -55,6 +55,8 @@ public class ListActivity extends AppCompatActivity {
 
         Query query = FirebaseDatabase.getInstance().getReference().child("printer");
         FirebaseRecyclerOptions<Printer> options = new FirebaseRecyclerOptions.Builder<Printer>().setQuery(query, Printer.class).setLifecycleOwner(this).build();
+        Log.d(TAG, "RECYCLERVIEWSUCCESS");
+
         mPrinterFirebaseAdapter = new FirebaseRecyclerAdapter<Printer, PrinterViewHolder>(options) {
             @Override
             public PrinterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
