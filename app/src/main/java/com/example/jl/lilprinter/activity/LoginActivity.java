@@ -13,24 +13,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.jl.lilprinter.R;
-import com.example.jl.lilprinter.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-
-import static com.example.jl.lilprinter.model.User.database;
-import static com.example.jl.lilprinter.model.User.myRef;
 
 public class LoginActivity extends AppCompatActivity {
-    private boolean isLoggedIn = false;
-    public static final String MESSAGE = "ISLOGGEDIN";
     private static final String TAG = "LoginActivity";
 
     private EditText usernameEdit, passwordEdit;
@@ -88,7 +78,14 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
-                                    startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+                                    Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user.getDisplayName() != null && user.getDisplayName().equals("ADMIN")) {
+                                        intent.putExtra("user", "ADMIN");
+                                    } else {
+                                        intent.putExtra("user", "GTUSER");
+                                    }
+                                    startActivity(intent);
                                     //FirebaseUser user = mAuth.getCurrentUser();
                                     //updateUI(user);
                                 } else {
