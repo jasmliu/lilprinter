@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <TextView
         android:id="@+id/txtView_status"
@@ -24,8 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        style="EditTextStyle"
-        />
+        style="EditTextStyle"/>
 
     <TextView
         android:id="@+id/txtView_paper"
@@ -37,6 +36,19 @@
         android:layout_below="@+id/txtView_color"
         android:layout_alignLeft="@+id/txtView_status"
         android:layout_alignStart="@+id/txtView_status" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        app:srcCompat="@drawable/pencil"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignBottom="@+id/txtView_status"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="13dp" />
 
     <ImageButton
         android:id="@+id/btn_paperStatus"
