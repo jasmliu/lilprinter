@@ -6,7 +6,9 @@ package com.example.jl.lilprinter.model;
 
 public class GTuser extends User {
 
-    public void updatePaperStatus(Printer printer, boolean paperStatus) {
+
+    /*public void updatePaperStatus(Printer printer, boolean paperStatus) {
+
         printer.setPaperStatus(boolean paperStatus);
     }
 
@@ -20,7 +22,9 @@ public class GTuser extends User {
 
     public void updateComputerStatus(Printer printer) {
         printer.setComputerStatus(boolean computerStatus);
-    }
+
+    }*/
+
 
 
 
