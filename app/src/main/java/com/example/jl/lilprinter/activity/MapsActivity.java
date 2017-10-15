@@ -1,6 +1,7 @@
 package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import com.example.jl.lilprinter.model.Printer;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -30,6 +33,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private DatabaseReference mDatabase, printerCloudEndPoint;
     private ChildEventListener mChildEventListener;
+    private BitmapDescriptor printer_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
+
+        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.checkmark);
 
         getIntent().putExtra("user" , "");
 
@@ -127,7 +133,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Printer printer = dataSnapshot.getValue(Printer.class);
                     LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
                     marker.setTag(printer);
                 }
 
