@@ -73,7 +73,7 @@ public class PrinterDetailActivity extends AppCompatActivity {
 
         computerStatus = findViewById(R.id.btn_computerStatus);
         if(!printer.getComputerStatus()) {
-            paperStatus.setImageResource(R.drawable.error);
+            computerStatus.setImageResource(R.drawable.error);
         }
 
 
