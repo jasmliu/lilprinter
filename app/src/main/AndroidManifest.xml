@@ -39,6 +39,8 @@
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.PrinterAddActivity"></activity>
+        <activity android:name=".activity.PrinterEditActivity"></activity>
+
     </application>
 
 </manifest>

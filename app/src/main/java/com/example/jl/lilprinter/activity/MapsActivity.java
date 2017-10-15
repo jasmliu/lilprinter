@@ -36,6 +36,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
+        getIntent().putExtra("users", "");
+
         setContentView(R.layout.activity_maps);
 
 
