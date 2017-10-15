@@ -135,8 +135,7 @@ public class Printer implements Parcelable {
         dest.writeString(id);
         dest.writeString(location);
         dest.writeString(type);
-        dest.writeBooleanArray(new boolean[] {status});
-        dest.writeBooleanArray()
+        dest.writeBooleanArray(new boolean[] {paperStatus, jamStatus, inkStatus, computerStatus, status});
         dest.writeDouble(lat);
         dest.writeDouble(lng);
     }
@@ -155,9 +154,13 @@ public class Printer implements Parcelable {
         id = in.readString();
         location = in.readString();
         type = in.readString();
-        boolean[] boolArr = new boolean[1];
+        boolean[] boolArr = new boolean[5];
         in.readBooleanArray(boolArr);
-        status = boolArr[0];
+        paperStatus = boolArr[0];
+        jamStatus = boolArr[1];
+        inkStatus = boolArr[2];
+        computerStatus = boolArr[3];
+        status = boolArr[4];
         lat = in.readDouble();
         lng = in.readDouble();
     }
