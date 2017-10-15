@@ -11,7 +11,7 @@ import com.example.jl.lilprinter.model.Printer;
  * Created by jav on 10/14/2017.
  */
 
-public class PrinterViewActivity extends AppCompatActivity {
+public class PrinterDetailActivity extends AppCompatActivity {
     private Printer printer;
 
     TextView locationText;

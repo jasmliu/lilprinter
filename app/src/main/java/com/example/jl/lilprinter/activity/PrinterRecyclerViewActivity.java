@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActivity extends AppCompatActivity {
+public class PrinterRecyclerViewActivity extends AppCompatActivity {
     private static final String TAG = "ListActivityError";
 
     private DatabaseReference mDatabase;
