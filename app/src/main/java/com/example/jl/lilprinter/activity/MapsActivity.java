@@ -1,7 +1,6 @@
 package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import java.util.List;
 
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -38,25 +36,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
-        getIntent().putExtra("user" , "GTUSER");
+        setContentView(R.layout.activity_maps);
 
-        if (getIntent().getExtras().getString("user").equals("ADMIN")) {
-            setContentView(R.layout.activity_maps_admin);
-        } else {
-            setContentView(R.layout.activity_maps_users);
-        }
 
-        if (getIntent().getExtras().getString("user").equals("ADMIN")) {
-            FloatingActionButton fabAddPrinter = findViewById(R.id.fabAddPrinter);
-            fabAddPrinter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                    intent.putExtra("user", getIntent().getExtras().getString("user"));
-                    startActivity(intent);
-                }
-            });
-        }
+
+        FloatingActionButton fabAddPrinter = findViewById(R.id.fabAddPrinter);
+        fabAddPrinter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                intent.putExtra("user", getIntent().getExtras().getString("user"));
+                startActivity(intent);
+            }
+        });
+
 
 
         FloatingActionButton fabLogin = findViewById(R.id.fabLogin);

@@ -1,11 +1,13 @@
 package com.example.jl.lilprinter.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.adapter.PrinterRecyclerViewAdapter;
@@ -37,12 +39,22 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        FloatingActionButton addFab = findViewById(R.id.addFab);
+
+        addFab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
         mRecyclerView = findViewById(R.id.printer_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
         mPrinters = new ArrayList<>();
         mAdapter = new PrinterRecyclerViewAdapter(mPrinters);
