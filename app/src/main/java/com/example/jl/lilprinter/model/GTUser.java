@@ -4,7 +4,7 @@ package com.example.jl.lilprinter.model;
  * Created by Shannon on 10/13/2017.
  */
 
-public class GTuser extends User {
+public class GTUser extends User {
 
 
     /*public void updatePaperStatus(Printer printer, boolean paperStatus) {
