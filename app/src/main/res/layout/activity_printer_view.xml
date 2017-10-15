@@ -14,28 +14,35 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        style="EditTextStyle"/>
+        style="EditTextStyle"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-smallcaps"/>
 
     <TextView
         android:id="@+id/txtView_color"
         android:text="BW or Color"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_below="@+id/txtView_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        style="EditTextStyle"/>
+        style="EditTextStyle"
+        android:fontFamily="sans-serif-condensed"/>
 
     <TextView
         android:id="@+id/txtView_paper"
         android:text="Paper:"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="EditTextStyle"
+        android:layout_marginTop="37dp"
         android:layout_below="@+id/txtView_color"
-        android:layout_alignLeft="@+id/txtView_status"
-        android:layout_alignStart="@+id/txtView_status" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:fontFamily="sans-serif-monospace"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabEdit"
@@ -57,21 +64,22 @@
         android:layout_height="wrap_content"
         android:background="color/white"
         android:typeface="monospace"
-        android:layout_below="@+id/txtView_color"
-        android:layout_alignLeft="@+id/btn_jamStatus"
-        android:layout_alignStart="@+id/btn_jamStatus" />
+        android:layout_alignTop="@+id/txtView_paper"
+        android:layout_toRightOf="@+id/txtView_computer"
+        android:layout_toEndOf="@+id/txtView_computer" />
 
     <TextView
         android:id="@+id/txtView_jam"
         android:text="Jam:"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="EditTextStyle"
-        android:layout_marginBottom="92dp"
-        android:layout_above="@+id/btn_inkStatus"
-        android:layout_alignLeft="@+id/txtView_ink"
-        android:layout_alignStart="@+id/txtView_ink" />
+        android:layout_below="@+id/btn_paperStatus"
+        android:layout_alignLeft="@+id/txtView_paper"
+        android:layout_alignStart="@+id/txtView_paper"
+        android:layout_marginTop="51dp"
+        android:fontFamily="sans-serif-monospace"/>
 
     <ImageButton
         android:id="@+id/btn_jamStatus"
@@ -80,21 +88,22 @@
         android:layout_height="wrap_content"
         android:background="color/white"
         android:typeface="monospace"
-        android:layout_alignBottom="@+id/txtView_jam"
-        android:layout_alignLeft="@+id/btn_inkStatus"
-        android:layout_alignStart="@+id/btn_inkStatus" />
+        android:layout_alignTop="@+id/txtView_jam"
+        android:layout_alignLeft="@+id/btn_paperStatus"
+        android:layout_alignStart="@+id/btn_paperStatus" />
 
     <TextView
         android:id="@+id/txtView_ink"
         android:text="Ink:"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="EditTextStyle"
-        android:layout_above="@+id/txtView_computer"
-        android:layout_alignLeft="@+id/txtView_paper"
-        android:layout_alignStart="@+id/txtView_paper"
-        android:layout_marginBottom="108dp" />
+        android:layout_below="@+id/btn_jamStatus"
+        android:layout_alignLeft="@+id/txtView_jam"
+        android:layout_alignStart="@+id/txtView_jam"
+        android:layout_marginTop="49dp"
+        android:fontFamily="sans-serif-monospace"/>
 
     <ImageButton
         android:id="@+id/btn_inkStatus"
@@ -104,22 +113,22 @@
         android:background="color/white"
         android:typeface="monospace"
         android:layout_alignTop="@+id/txtView_ink"
-        android:layout_toRightOf="@+id/txtView_color"
-        android:layout_toEndOf="@+id/txtView_color" />
-
+        android:layout_alignLeft="@+id/btn_jamStatus"
+        android:layout_alignStart="@+id/btn_jamStatus" />
 
 
     <TextView
         android:id="@+id/txtView_computer"
         android:text="Computer:"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="EditTextStyle"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/txtView_ink"
         android:layout_alignStart="@+id/txtView_ink"
-        android:layout_marginBottom="102dp" />
+        android:layout_marginBottom="102dp"
+        android:fontFamily="sans-serif-monospace"/>
 
     <ImageButton
         android:id="@+id/btn_computerStatus"
