@@ -138,7 +138,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         } else {
                             printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
                         }
-                        Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
                         marker.setTag(printer);
 
                 }
