@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
@@ -33,10 +34,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private DatabaseReference mDatabase, printerCloudEndPoint;
     private ChildEventListener mChildEventListener;
     private BitmapDescriptor printer_icon;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        progressBar = findViewById(R.id.progressBar);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
@@ -65,6 +69,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(MapsActivity.this, PrinterRecyclerViewActivity.class);
                 intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
@@ -88,6 +93,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        progressBar = findViewById(R.id.progressBar);
+
         mMap = googleMap;
         Log.d(TAG, "Map opens, data read");
         //restrict user panning
@@ -102,13 +109,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
               @Override
               public boolean onMarkerClick(Marker marker) {
-              Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
-              //view printer info
-              Intent intent = new Intent(MapsActivity.this, PrinterDetailActivity.class);
-              intent.putExtra("user", getIntent().getStringExtra("user"));
-              intent.putExtra("printer", printer);
-              startActivity(intent);
-              return false;
+                  progressBar.setVisibility(View.VISIBLE);
+                  Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
+                  //view printer info
+                  Intent intent = new Intent(MapsActivity.this, PrinterDetailActivity.class);
+                  intent.putExtra("user", getIntent().getStringExtra("user"));
+                  intent.putExtra("printer", printer);
+                  startActivity(intent);
+                  return false;
               }
           });
 
