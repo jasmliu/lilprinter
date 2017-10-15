@@ -65,7 +65,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ListActivity.class);
+                Intent intent = new Intent(view.getContext(), PrinterRecyclerViewActivity.class);
                 intent.putExtra("user", getIntent().getExtras().getString("user"));
                 startActivity(intent);
             }
@@ -127,7 +127,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
               Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
 
               //view printer info
-              Intent intent = new Intent(MapsActivity.this, PrinterViewActivity.class);
+              Intent intent = new Intent(MapsActivity.this, PrinterDetailActivity.class);
               intent.putExtra("printer", printer);
               startActivity(intent);
               return false;

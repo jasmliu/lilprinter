@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jl.lilprinter.R;
-import com.example.jl.lilprinter.activity.PrinterViewActivity;
+import com.example.jl.lilprinter.activity.PrinterDetailActivity;
 import com.example.jl.lilprinter.model.Printer;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class PrinterRecyclerViewAdapter extends RecyclerView.Adapter<PrinterRecy
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), PrinterViewActivity.class);
+            Intent intent = new Intent(v.getContext(), PrinterDetailActivity.class);
             intent.putExtra("printer", printer);
             v.getContext().startActivity(intent);
         }
