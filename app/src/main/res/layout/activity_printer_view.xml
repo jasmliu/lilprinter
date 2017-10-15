@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
 
 
     <TextView
@@ -14,7 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        style="EditTextStyle"/>
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAppearance="@android:style/TextAppearance.Large" />
+
 
     <TextView
         android:id="@+id/txtView_color"
@@ -49,9 +54,11 @@
         android:layout_alignLeft="@+id/btn_jamStatus"
         android:layout_alignStart="@+id/btn_jamStatus" />
 
+
     <TextView
         android:id="@+id/txtView_jam"
         android:text="Jam:"
+
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,20 +69,24 @@
         android:layout_alignLeft="@+id/txtView_ink"
         android:layout_alignStart="@+id/txtView_ink" />
 
+
     <ImageButton
         android:id="@+id/btn_jamStatus"
         android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:background="#ffffff"
         android:typeface="monospace"
         android:layout_alignBottom="@+id/txtView_jam"
         android:layout_alignLeft="@+id/btn_inkStatus"
         android:layout_alignStart="@+id/btn_inkStatus" />
 
+
     <TextView
         android:id="@+id/txtView_ink"
         android:text="Ink:"
+
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,11 +97,14 @@
         android:layout_alignStart="@+id/txtView_paper"
         android:layout_marginBottom="108dp" />
 
+
     <ImageButton
         android:id="@+id/btn_inkStatus"
         android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+
         android:background="#ffffff"
         android:typeface="monospace"
         android:layout_alignTop="@+id/txtView_ink"
@@ -99,18 +113,23 @@
 
 
 
+
     <TextView
         android:id="@+id/txtView_computer"
         android:text="Computer:"
+
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
 
         style="EditTextStyle"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/txtView_ink"
         android:layout_alignStart="@+id/txtView_ink"
+
         android:layout_marginBottom="102dp" />
+
 
     <ImageButton
         android:id="@+id/btn_computerStatus"
@@ -125,5 +144,5 @@
 
 
 
-
 </RelativeLayout>
+

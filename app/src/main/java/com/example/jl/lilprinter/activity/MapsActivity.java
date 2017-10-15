@@ -1,6 +1,7 @@
 package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import com.example.jl.lilprinter.model.Printer;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -25,8 +28,8 @@ import java.util.List;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private DatabaseReference mDatabase, printerCloudEndPoint;
-    private List<Printer> mPrinters;
     private ChildEventListener mChildEventListener;
+    private BitmapDescriptor printer_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +90,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         dataRead();
         printerCloudEndPoint.addChildEventListener(mChildEventListener);
-
     }
 
     /**.
@@ -96,7 +98,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.checkmark);
         //restrict user panning
         LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
@@ -125,7 +127,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Printer printer = dataSnapshot.getValue(Printer.class);
                     LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
                     marker.setTag(printer);
                 }
 
