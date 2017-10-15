@@ -1,14 +1,14 @@
 package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.jl.lilprinter.R;
+import com.example.jl.lilprinter.data.PrinterFirebaseAdapter;
 import com.example.jl.lilprinter.model.Printer;
 
 public class PrinterAddActivity extends AppCompatActivity {
@@ -20,14 +20,19 @@ public class PrinterAddActivity extends AppCompatActivity {
     Button update;
     Printer printer;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_printer_add);
+        setContentView(R.layout.activity_printer_edit);
 
         printer = new Printer();
 
         paperStatus = findViewById(R.id.btn_paperStatus);
+        if(!printer.getPaperStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
         paperStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +47,9 @@ public class PrinterAddActivity extends AppCompatActivity {
         });
 
         jamStatus = findViewById(R.id.btn_jamStatus);
+        if(!printer.getJamStatus()) {
+            jamStatus.setImageResource(R.drawable.error);
+        }
         jamStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +63,9 @@ public class PrinterAddActivity extends AppCompatActivity {
         });
 
         inkStatus = findViewById(R.id.btn_inkStatus);
+        if(!printer.getInkStatus()) {
+            inkStatus.setImageResource(R.drawable.error);
+        }
         inkStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +79,9 @@ public class PrinterAddActivity extends AppCompatActivity {
         });
 
         computerStatus = findViewById(R.id.btn_computerStatus);
+        if(!printer.getComputerStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
         computerStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,37 +98,14 @@ public class PrinterAddActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_printer_view);
-
-                printer = getIntent().getExtras().getParcelable("printer");
-
-                TextView typeText = (TextView) findViewById(R.id.txtView_color);
-                typeText.setText(printer.getType());
-
-                paperStatus = findViewById(R.id.btn_paperStatus);
-                if(!printer.getPaperStatus()) {
-                    paperStatus.setImageResource(R.drawable.error);
-                }
-
-                jamStatus = findViewById(R.id.btn_jamStatus);
-                if(!printer.getJamStatus()) {
-                    jamStatus.setImageResource(R.drawable.error);
-                }
-
-                inkStatus = findViewById(R.id.btn_inkStatus);
-                if(!printer.getInkStatus()) {
-                    inkStatus.setImageResource(R.drawable.error);
-                }
-
-                computerStatus = findViewById(R.id.btn_computerStatus);
-                if(!printer.getComputerStatus()) {
-                    paperStatus.setImageResource(R.drawable.error);
-                }
-
+                PrinterFirebaseAdapter db = new PrinterFirebaseAdapter();
+                db.writePrinter(printer);
                 Intent intent = new Intent(PrinterAddActivity.this, PrinterRecyclerViewActivity.class);
                 intent.putExtra("printer", printer);
                 startActivity(intent);
             }
         });
+
+
     }
 }
