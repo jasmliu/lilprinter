@@ -31,6 +31,9 @@ public class PrinterEditActivity extends AppCompatActivity {
         printer = getIntent().getExtras().getParcelable("printer");
 
         paperStatus = findViewById(R.id.btn_paperStatus);
+        if(!printer.getPaperStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
         paperStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +48,9 @@ public class PrinterEditActivity extends AppCompatActivity {
         });
 
         jamStatus = findViewById(R.id.btn_jamStatus);
+        if(!printer.getJamStatus()) {
+            jamStatus.setImageResource(R.drawable.error);
+        }
         jamStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +64,9 @@ public class PrinterEditActivity extends AppCompatActivity {
         });
 
         inkStatus = findViewById(R.id.btn_inkStatus);
+        if(!printer.getInkStatus()) {
+            inkStatus.setImageResource(R.drawable.error);
+        }
         inkStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +80,9 @@ public class PrinterEditActivity extends AppCompatActivity {
         });
 
         computerStatus = findViewById(R.id.btn_computerStatus);
+        if(!printer.getComputerStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
         computerStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,33 +99,6 @@ public class PrinterEditActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_printer_view);
-
-                printer = getIntent().getExtras().getParcelable("printer");
-
-                TextView typeText = (TextView) findViewById(R.id.txtView_color);
-                typeText.setText(printer.getType());
-
-                paperStatus = findViewById(R.id.btn_paperStatus);
-                if(!printer.getPaperStatus()) {
-                    paperStatus.setImageResource(R.drawable.error);
-                }
-
-                jamStatus = findViewById(R.id.btn_jamStatus);
-                if(!printer.getJamStatus()) {
-                    jamStatus.setImageResource(R.drawable.error);
-                }
-
-                inkStatus = findViewById(R.id.btn_inkStatus);
-                if(!printer.getInkStatus()) {
-                    inkStatus.setImageResource(R.drawable.error);
-                }
-
-                computerStatus = findViewById(R.id.btn_computerStatus);
-                if(!printer.getComputerStatus()) {
-                    paperStatus.setImageResource(R.drawable.error);
-                }
-
                 Intent intent = new Intent(PrinterEditActivity.this, PrinterDetailActivity.class);
                 intent.putExtra("printer", printer);
                 startActivity(intent);
