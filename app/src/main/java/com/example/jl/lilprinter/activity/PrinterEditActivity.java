@@ -101,6 +101,12 @@ public class PrinterEditActivity extends AppCompatActivity {
             }
         });
 
+        if (printer.getComputerStatus() && printer.getPaperStatus() && printer.getInkStatus() && printer.getJamStatus()) {
+            printer.setStatus(true);
+        } else {
+            printer.setStatus(false);
+        }
+
         update = findViewById(R.id.btn_update);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,9 +119,7 @@ public class PrinterEditActivity extends AppCompatActivity {
             }
         });
 
-        if (printer.getComputerStatus() || printer.getPaperStatus() || printer.getInkStatus() || printer.getJamStatus()) {
-            printer.setStatus(false);
-        }
+
 
     }
 }
