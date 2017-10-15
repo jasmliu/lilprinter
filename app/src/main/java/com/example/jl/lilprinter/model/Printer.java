@@ -134,6 +134,14 @@ public class Printer implements Parcelable {
         this.lng = lng;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public int describeContents() {
         return 0;
