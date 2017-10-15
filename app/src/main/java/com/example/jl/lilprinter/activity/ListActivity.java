@@ -2,40 +2,35 @@ package com.example.jl.lilprinter.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.jl.lilprinter.R;
-import com.example.jl.lilprinter.adapter.PrinterViewHolder;
-import com.example.jl.lilprinter.data.PrinterAdapter;
+import com.example.jl.lilprinter.adapter.PrinterRecyclerViewAdapter;
 import com.example.jl.lilprinter.model.Printer;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
-    private static final String TAG = "ListActivity";
+    private static final String TAG = "ListActivityError";
 
     private DatabaseReference mDatabase;
     private DatabaseReference printerCloudEndPoint;
 
     private List<Printer> mPrinters;
 
-    private PrinterAdapter mPrinterAdapter;
+    private ChildEventListener mChildEventListener;
 
-    private FirebaseRecyclerAdapter mPrinterFirebaseAdapter;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,60 +39,59 @@ public class ListActivity extends AppCompatActivity {
 
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
+        mRecyclerView = findViewById(R.id.printer_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
+        mPrinters = new ArrayList<>();
+        mAdapter = new PrinterRecyclerViewAdapter(mPrinters);
+        mRecyclerView.setAdapter(mAdapter);
 
-        //recyclerview
-        RecyclerView mPrinterRecyclerView = findViewById(R.id.printer_recycler_view);
-        mPrinterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mPrinterRecyclerView.setHasFixedSize(true);
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), LinearLayoutManager.VERTICAL);
+        mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
-        Query query = FirebaseDatabase.getInstance().getReference().child("printer");
-        FirebaseRecyclerOptions<Printer> options = new FirebaseRecyclerOptions.Builder<Printer>().setQuery(query, Printer.class).setLifecycleOwner(this).build();
-        Log.d(TAG, "RECYCLERVIEWSUCCESS");
-
-        mPrinterFirebaseAdapter = new FirebaseRecyclerAdapter<Printer, PrinterViewHolder>(options) {
-            @Override
-            public PrinterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                Log.d(TAG, "FIREBASERECYCLERSUCCESS");
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.printer_custom_row, parent, false);
-                return new PrinterViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(PrinterViewHolder holder, int position, Printer printer) {
-                Log.d(TAG, "FIREBASERECYCLERFAIL");
-                holder.bind(printer);
-            }
-        };
-
-        mPrinterRecyclerView.setAdapter(mPrinterFirebaseAdapter);
-
-        Log.d(TAG, "SETADAPTERSUCCESS");
-        printerCloudEndPoint.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "VALUE EVENT LISTENER SUCCESS");
-                for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
-                    Printer printer = printerSnapshot.getValue(Printer.class);
-                    mPrinters.add(printer);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "CANCELED EVENT CANCELED");
-            }
-        });
-
-
+        dataRead();
+        printerCloudEndPoint.addChildEventListener(mChildEventListener);
     }
 
-}
+    private void dataRead() {
+        if (mChildEventListener == null) {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Printer printer = dataSnapshot.getValue(Printer.class);
 
-//initial printer data add; disregard
-/**
- mPrinterAdapter = new PrinterAdapter();
- for (Printer p : new Printers().getPrinters()) {
- mPrinterAdapter.writePrinter(p);
- }**/
+                    mPrinters.add(printer);
+                    mAdapter.notifyDataSetChanged();
+                    Log.v(TAG, printer.getLocation());
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
+                        Printer printer = printerSnapshot.getValue(Printer.class);
+                        mPrinters.add(printer);
+                        mAdapter.notifyDataSetChanged();
+                        Log.v(TAG, printer.getLocation());
+                    }
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+        }
+    }
+}
