@@ -28,7 +28,7 @@ public class PrinterDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_printer_view_user);
+        setContentView(R.layout.activity_printer_view);
 
         printer = getIntent().getExtras().getParcelable("printer");
 
@@ -81,6 +81,7 @@ public class PrinterDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 

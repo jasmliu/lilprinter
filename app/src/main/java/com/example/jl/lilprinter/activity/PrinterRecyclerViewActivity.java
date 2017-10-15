@@ -40,8 +40,9 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, getIntent().getStringExtra("user"));
         if (getIntent().getStringExtra("user").equals("ADMIN")) {
-            setContentView(R.layout.activity_list_user);
+            setContentView(R.layout.activity_list_admin);
         } else {
             setContentView(R.layout.activity_list_user);
         }
@@ -55,7 +56,7 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
 //            PrinterFirebaseAdapter db =new PrinterFirebaseAdapter();
 //            db.writePrinter(p);
 //        }
-        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
@@ -85,13 +86,15 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            iTH.attachToRecyclerView(mRecyclerView);
+
         }
 
         mRecyclerView = findViewById(R.id.printer_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        if (getIntent().getStringExtra("user").equals("ADMIN")) {
+            iTH.attachToRecyclerView(mRecyclerView);
+        }
         mPrinters = new ArrayList<>();
         mAdapter = new PrinterRecyclerViewAdapter(mPrinters);
         mRecyclerView.setAdapter(mAdapter);

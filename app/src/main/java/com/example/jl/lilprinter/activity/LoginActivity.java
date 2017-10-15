@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.jl.lilprinter.R;
@@ -82,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.d(TAG, "signInWithEmail:success");
                                     Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    if (user.getDisplayName() != null && user.getEmail().equals("jasmineliu@gatech.edu")) {
+                                    if (user.getEmail() != null && user.getEmail().equals("jasmineliu@gatech.edu")) {
                                         intent.putExtra("user", "ADMIN");
                                     } else {
                                         intent.putExtra("user", "GTUSER");
