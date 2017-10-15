@@ -24,11 +24,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.ListActivity" />
+        <activity android:name=".activity.PrinterRecyclerViewActivity" />
 
-        <activity android:name=".activity.PrinterViewActivity"
+        <activity android:name=".activity.PrinterDetailActivity"
             android:label="ViewPrinter"
-            android:parentActivityName=".activity.MapsActivity" />
+            android:parentActivityName=".activity.PrinterRecyclerViewActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
