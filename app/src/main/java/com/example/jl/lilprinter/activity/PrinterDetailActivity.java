@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class PrinterDetailActivity extends AppCompatActivity {
     private Printer printer;
 
-    TextView typeText;
+    TextView typeText, descriptionText;
     ImageButton paperStatus;
     ImageButton jamStatus;
     ImageButton inkStatus;
@@ -32,8 +33,13 @@ public class PrinterDetailActivity extends AppCompatActivity {
 
         printer = getIntent().getExtras().getParcelable("printer");
 
-        typeText = (TextView) findViewById(R.id.txtView_color);
+        typeText = findViewById(R.id.txtView_color);
+        Log.v("lime", printer.getLocation());
+        Log.v("LEMON", printer.getType());
         typeText.setText(printer.getType());
+
+        descriptionText = findViewById(R.id.txtv)
+
 
         paperStatus = findViewById(R.id.btn_paperStatus);
         if(!printer.getPaperStatus()) {
@@ -75,6 +81,35 @@ public class PrinterDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void update() {
+        setContentView(R.layout.activity_printer_view);
+
+        printer = getIntent().getExtras().getParcelable("printer");
+
+        typeText = (TextView) findViewById(R.id.txtView_color);
+        typeText.setText(printer.getType());
+
+        paperStatus = findViewById(R.id.btn_paperStatus);
+        if(!printer.getPaperStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
+
+        jamStatus = findViewById(R.id.btn_jamStatus);
+        if(!printer.getJamStatus()) {
+            jamStatus.setImageResource(R.drawable.error);
+        }
+
+        inkStatus = findViewById(R.id.btn_inkStatus);
+        if(!printer.getInkStatus()) {
+            inkStatus.setImageResource(R.drawable.error);
+        }
+
+        computerStatus = findViewById(R.id.btn_computerStatus);
+        if(!printer.getComputerStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
     }
 
 
