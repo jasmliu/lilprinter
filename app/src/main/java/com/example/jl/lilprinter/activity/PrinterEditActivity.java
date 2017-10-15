@@ -1,8 +1,8 @@
 package com.example.jl.lilprinter.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class PrinterEditActivity extends AppCompatActivity {
 

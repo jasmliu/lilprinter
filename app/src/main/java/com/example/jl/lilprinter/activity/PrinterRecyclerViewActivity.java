@@ -1,12 +1,15 @@
 package com.example.jl.lilprinter.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.View;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.adapter.PrinterRecyclerViewAdapter;
@@ -50,16 +53,16 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
 
 
 
-//        FloatingActionButton addFab = findViewById(R.id.addFab);
-//
-//        addFab.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        FloatingActionButton addFab = findViewById(R.id.fabAdd);
+
+        addFab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

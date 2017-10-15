@@ -38,7 +38,7 @@ public class PrinterDetailActivity extends AppCompatActivity {
         Log.v("LEMON", printer.getType());
         typeText.setText(printer.getType());
 
-        descriptionText = findViewById(R.id.txtv)
+//        descriptionText = findViewById(R.id.txtv)
 
 
         paperStatus = findViewById(R.id.btn_paperStatus);
