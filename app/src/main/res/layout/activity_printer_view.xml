@@ -7,56 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtView_status"
-        style="EditTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="STATUS"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textSize="40dp"/>
-
-    <TextView
-        android:id="@+id/txtView_color"
-        android:text="BW or Color"
-        android:textSize="25dp"
-        android:layout_below="@+id/txtView_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        style="EditTextStyle"
-        android:fontFamily="sans-serif-condensed"/>
-
-    <TextView
-        android:id="@+id/txtView_description"
-        android:text="Description"
-        android:textSize="25dp"
-        android:layout_below="@+id/txtView_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        style="EditTextStyle"
-        android:fontFamily="sans-serif-condensed"/>
-
-    <TextView
-        android:id="@+id/txtView_paper"
-        android:text="Paper:"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="EditTextStyle"
-        android:layout_marginTop="37dp"
-        android:layout_below="@+id/txtView_color"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:fontFamily="sans-serif-monospace"/>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabEdit"
         android:layout_width="wrap_content"
@@ -69,6 +19,53 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="13dp" />
+    <TextView
+        android:id="@+id/txtView_status"
+        style="EditTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:text="Printer Status"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/txtView_color"
+        android:text="BW or Color"
+        android:textSize="25dp"
+        android:layout_below="@+id/txtView_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        style="EditTextStyle"
+        android:fontFamily="monospace"/>
+
+    <TextView
+        android:id="@+id/txtView_description"
+        android:text="Description"
+        android:textSize="20dp"
+        android:layout_below="@+id/txtView_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        style="EditTextStyle"
+        android:fontFamily="monospace"/>
+
+    <TextView
+        android:id="@+id/txtView_paper"
+        android:text="Paper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/txtView_color"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="137dp" />
+
 
     <ImageButton
         android:id="@+id/btn_paperStatus"
@@ -83,15 +80,14 @@
 
     <TextView
         android:id="@+id/txtView_jam"
-        android:text="Jam:"
-        android:textSize="25dp"
+        android:text="No Jam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="EditTextStyle"
+        style="@style/TextViewStyle"
         android:layout_below="@+id/btn_paperStatus"
         android:layout_alignLeft="@+id/txtView_paper"
         android:layout_alignStart="@+id/txtView_paper"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-monospace"/>
 
     <ImageButton
@@ -107,15 +103,14 @@
 
     <TextView
         android:id="@+id/txtView_ink"
-        android:text="Ink:"
-        android:textSize="25dp"
+        android:text="Ink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="EditTextStyle"
+        style="@style/TextViewStyle"
         android:layout_below="@+id/btn_jamStatus"
         android:layout_alignLeft="@+id/txtView_jam"
         android:layout_alignStart="@+id/txtView_jam"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-monospace"/>
 
     <ImageButton
@@ -132,13 +127,12 @@
 
     <TextView
         android:id="@+id/txtView_computer"
-        android:text="Computer:"
-        android:textSize="25dp"
+        android:text="Computer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="EditTextStyle"
+        style="@style/TextViewStyle"
         android:fontFamily="sans-serif-monospace"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/btn_inkStatus"
         android:layout_alignLeft="@+id/txtView_ink"
         android:layout_alignStart="@+id/txtView_ink" />
