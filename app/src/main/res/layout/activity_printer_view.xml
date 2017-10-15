@@ -104,6 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+
         android:background="#ffffff"
         android:typeface="monospace"
         android:layout_alignTop="@+id/txtView_ink"
@@ -135,9 +136,7 @@
         android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:background="#ffffff"
-
         android:typeface="monospace"
         android:layout_alignTop="@+id/txtView_computer"
         android:layout_alignLeft="@+id/btn_inkStatus"
