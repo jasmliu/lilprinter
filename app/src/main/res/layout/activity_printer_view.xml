@@ -20,6 +20,7 @@
 
     <TextView
         android:id="@+id/txtView_location"
+        android:text="@string/location"
         style="EditTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,11 +29,12 @@
         android:textStyle="bold"
         android:fontFamily="monospace"
         android:textAppearance="@android:style/TextAppearance.Large"
-        android:textSize="30dp"/>
+        android:textSize="25dp"/>
 
     <TextView
         android:id="@+id/txtView_description"
-        android:textSize="25dp"
+        android:text="Description"
+        android:textSize="20dp"
         android:layout_below="@+id/txtView_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +44,7 @@
 
     <TextView
         android:id="@+id/txtView_color"
-        android:text="Description"
+        android:text="Color"
         android:textSize="20dp"
         android:layout_below="@+id/txtView_description"
         android:layout_width="wrap_content"
@@ -57,13 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyle"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginStart="7dp"
-        android:layout_below="@+id/txtView_description"
-        android:layout_alignLeft="@+id/txtView_description"
-        android:layout_alignStart="@+id/txtView_description" />
-
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/txtView_color"
+        android:layout_toRightOf="@+id/fabList"
+        android:layout_toEndOf="@+id/fabList"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
 
     <ImageButton
         android:id="@+id/btn_paperStatus"
@@ -72,9 +73,11 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:typeface="monospace"
-        android:layout_alignTop="@+id/txtView_paper"
-        android:layout_toRightOf="@+id/txtView_computer"
-        android:layout_toEndOf="@+id/txtView_computer" />
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_alignBottom="@+id/txtView_paper"
+        android:layout_toRightOf="@+id/fabMap"
+        android:layout_toEndOf="@+id/fabMap" />
 
     <TextView
         android:id="@+id/txtView_jam"
@@ -145,6 +148,48 @@
         android:layout_alignTop="@+id/txtView_computer"
         android:layout_alignLeft="@+id/btn_inkStatus"
         android:layout_alignStart="@+id/btn_inkStatus" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/lock"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_alignTop="@+id/fabMap"
+        android:layout_toRightOf="@+id/fabMap"
+        android:layout_toEndOf="@+id/fabMap" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/list" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/map"
+        android:layout_marginLeft="65dp"
+        android:layout_marginStart="65dp"
+        android:layout_alignTop="@+id/fabList"
+        android:layout_toRightOf="@+id/fabAdd"
+        android:layout_toEndOf="@+id/fabAdd" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/plus"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_alignTop="@+id/fabList"
+        android:layout_toRightOf="@+id/fabList"
+        android:layout_toEndOf="@+id/fabList" />
 
 </RelativeLayout>
 
