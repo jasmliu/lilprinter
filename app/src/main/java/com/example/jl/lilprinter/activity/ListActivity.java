@@ -45,8 +45,7 @@ public class ListActivity extends AppCompatActivity {
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
-        //list of printers pulled from database
-        mPrinters = new ArrayList<>();
+
 
         //recyclerview
         RecyclerView mPrinterRecyclerView = findViewById(R.id.printer_recycler_view);
