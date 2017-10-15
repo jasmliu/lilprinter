@@ -59,10 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyle"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/txtView_description"
-        android:layout_alignLeft="@+id/txtView_description"
-        android:layout_alignStart="@+id/txtView_description" />
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/txtView_color"
+        android:layout_toRightOf="@+id/fabList"
+        android:layout_toEndOf="@+id/fabList"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
 
     <ImageButton
         android:id="@+id/btn_paperStatus"
@@ -71,9 +73,11 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:typeface="monospace"
-        android:layout_alignTop="@+id/txtView_paper"
-        android:layout_toRightOf="@+id/txtView_computer"
-        android:layout_toEndOf="@+id/txtView_computer" />
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_alignBottom="@+id/txtView_paper"
+        android:layout_toRightOf="@+id/fabMap"
+        android:layout_toEndOf="@+id/fabMap" />
 
     <TextView
         android:id="@+id/txtView_jam"

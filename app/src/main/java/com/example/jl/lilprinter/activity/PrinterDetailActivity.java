@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -48,6 +47,7 @@ public class PrinterDetailActivity extends AppCompatActivity {
 
         descriptionText = findViewById(R.id.txtView_description);
         descriptionText.setText(printer.getDescription());
+
 
         paperStatus = findViewById(R.id.btn_paperStatus);
         if(!printer.getPaperStatus()) {
@@ -99,6 +99,7 @@ public class PrinterDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 
