@@ -135,6 +135,12 @@ public class Printer implements Parcelable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        Printer printer = (Printer) obj;
+        return this.id.equals(printer.id);
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }

@@ -6,6 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.adapter.PrinterRecyclerViewAdapter;
@@ -61,7 +62,7 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
 //        });
 
 
-        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
@@ -70,8 +71,11 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 PrinterFirebaseAdapter db =new PrinterFirebaseAdapter();
-                db.removePrinter(((PrinterRecyclerViewAdapter.ViewHolder) viewHolder).printer);
+                Printer printer = ((PrinterRecyclerViewAdapter.ViewHolder) viewHolder).printer;
+                db.removePrinter(printer);
+                Log.d(TAG, "array size " + mPrinters.size());
                 dataRead();
+                Log.d(TAG, "array size: " + mPrinters.size());
             }
         };
         ItemTouchHelper iTH = new ItemTouchHelper(simpleItemTouchCallback);
@@ -94,10 +98,6 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
     }
 
     private void dataRead() {
-        dataRead(null);
-    }
-
-    private void dataRead(final Printer removePrinter) {
         if (mChildEventListener == null) {
             mChildEventListener = new ChildEventListener() {
                 @Override
@@ -119,8 +119,7 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    mPrinters.remove(dataSnapshot.getValue(Printer.class));
+                    Log.d(TAG, String.valueOf(mPrinters.remove(dataSnapshot.getValue(Printer.class))));
                     mAdapter.notifyDataSetChanged();
                 }
 
