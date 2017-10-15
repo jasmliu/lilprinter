@@ -136,6 +136,7 @@ public class Printer implements Parcelable {
         dest.writeString(location);
         dest.writeString(type);
         dest.writeBooleanArray(new boolean[] {status});
+        dest.writeBooleanArray()
         dest.writeDouble(lat);
         dest.writeDouble(lng);
     }
