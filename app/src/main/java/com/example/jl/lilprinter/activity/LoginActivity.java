@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.d(TAG, "signInWithEmail:success");
                                     Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    if (user.getDisplayName() != null && user.getDisplayName().equals("ADMIN")) {
+                                    if (user.getDisplayName() != null && user.getEmail().equals("jasmineliu@gatech.edu")) {
                                         intent.putExtra("user", "ADMIN");
                                     } else {
                                         intent.putExtra("user", "GTUSER");

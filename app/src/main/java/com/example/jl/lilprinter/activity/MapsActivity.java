@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,7 +19,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.List;
 
 
@@ -37,7 +35,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
-        getIntent().putExtra("user" , "");
+        getIntent().putExtra("user" , "GTUSER");
 
         if (getIntent().getExtras().getString("user").equals("ADMIN")) {
             setContentView(R.layout.activity_maps_admin);
