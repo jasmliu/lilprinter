@@ -96,6 +96,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         library.setLocation("library");
         library.setLat(33.774401);
         library.setLng(-84.395841);
+        library.setType("BW");
         printers.add(library);
     }
 
