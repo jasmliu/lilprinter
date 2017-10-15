@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,7 +33,9 @@ public class PrinterDetailActivity extends AppCompatActivity {
 
         printer = getIntent().getExtras().getParcelable("printer");
 
-        typeText = (TextView) findViewById(R.id.txtView_color);
+        typeText = findViewById(R.id.txtView_color);
+        Log.v("lime", printer.getLocation());
+        Log.v("LEMON", printer.getType());
         typeText.setText(printer.getType());
 
         paperStatus = findViewById(R.id.btn_paperStatus);
