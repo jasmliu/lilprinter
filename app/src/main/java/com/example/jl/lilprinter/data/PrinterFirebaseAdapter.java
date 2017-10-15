@@ -14,11 +14,11 @@ import java.util.List;
  * Created by jav on 10/14/2017.
  */
 
-public class PrinterAdapter {
+public class PrinterFirebaseAdapter {
     private DatabaseReference mDatabase;
     private DatabaseReference printerCloudEndPoint;
 
-    public PrinterAdapter() {
+    public PrinterFirebaseAdapter() {
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
     }
