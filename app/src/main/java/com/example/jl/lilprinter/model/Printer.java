@@ -10,8 +10,8 @@ import android.os.Parcelable;
 public class Printer implements Parcelable {
     private String id;
     private String location;
+    private String description;
     private String type;
-
     private boolean status;
     private boolean computerStatus;
 
