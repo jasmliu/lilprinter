@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -100,16 +99,17 @@ public class PrinterEditActivity extends AppCompatActivity {
             }
         });
 
-        if (printer.getComputerStatus() && printer.getPaperStatus() && printer.getInkStatus() && printer.getJamStatus()) {
-            printer.setStatus(true);
-        } else {
-            printer.setStatus(false);
-        }
+
 
         update = findViewById(R.id.btn_update);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (printer.getComputerStatus() && printer.getPaperStatus() && printer.getInkStatus() && printer.getJamStatus()) {
+                    printer.setStatus(true);
+                } else {
+                    printer.setStatus(false);
+                }
                 Intent intent = new Intent(PrinterEditActivity.this, PrinterDetailActivity.class);
                 intent.putExtra("user", getIntent().getStringExtra("user"));
                 intent.putExtra("printer", printer);
