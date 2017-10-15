@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class PrinterDetailActivity extends AppCompatActivity {
     private Printer printer;
 
-    TextView typeText, descriptionText;
+    TextView locationText, typeText, descriptionText;
     ImageButton paperStatus;
     ImageButton jamStatus;
     ImageButton inkStatus;
@@ -32,6 +32,9 @@ public class PrinterDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_printer_view);
 
         printer = getIntent().getExtras().getParcelable("printer");
+
+        locationText = findViewById(R.id.txtView_location);
+        locationText.setText(printer.getLocation());
 
         typeText = findViewById(R.id.txtView_color);
         typeText.setText(printer.getType());
