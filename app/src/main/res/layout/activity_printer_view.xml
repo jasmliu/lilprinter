@@ -8,13 +8,14 @@
 
     <TextView
         android:id="@+id/txtView_status"
-        android:text="STATUS"
-        android:textSize="40dp"
+        style="EditTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        style="EditTextStyle"/>
+        android:text="STATUS"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textSize="40dp" />
 
     <TextView
         android:id="@+id/txtView_color"
