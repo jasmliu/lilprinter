@@ -44,7 +44,6 @@ public class PrinterEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 printer.setPaperStatus(!printer.getPaperStatus());
-
                 if (!printer.getPaperStatus()) {
                     paperStatus.setImageResource(R.drawable.error);
                 } else {
@@ -87,7 +86,7 @@ public class PrinterEditActivity extends AppCompatActivity {
 
         computerStatus = findViewById(R.id.btn_computerStatus);
         if(!printer.getComputerStatus()) {
-            paperStatus.setImageResource(R.drawable.error);
+            computerStatus.setImageResource(R.drawable.error);
         }
         computerStatus.setOnClickListener(new View.OnClickListener() {
             @Override
