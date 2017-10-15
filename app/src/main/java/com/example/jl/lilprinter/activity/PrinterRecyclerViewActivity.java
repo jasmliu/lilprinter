@@ -1,14 +1,11 @@
 package com.example.jl.lilprinter.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.adapter.PrinterRecyclerViewAdapter;
@@ -44,16 +41,24 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
-        FloatingActionButton addFab = findViewById(R.id.addFab);
+//        Printers printers = new Printers();
+//        for (Printer p : printers.getPrinters()) {
+//            PrinterFirebaseAdapter db =new PrinterFirebaseAdapter();
+//            db.writePrinter(p);
+//        }
 
-        addFab.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
-                startActivity(intent);
-            }
-        });
+
+//        FloatingActionButton addFab = findViewById(R.id.addFab);
+//
+//        addFab.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -69,12 +74,14 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
                 dataRead();
             }
         };
+        ItemTouchHelper iTH = new ItemTouchHelper(simpleItemTouchCallback);
+
 
 
         mRecyclerView = findViewById(R.id.printer_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        iTH.attachToRecyclerView(mRecyclerView);
         mPrinters = new ArrayList<>();
         mAdapter = new PrinterRecyclerViewAdapter(mPrinters);
         mRecyclerView.setAdapter(mAdapter);
@@ -87,6 +94,10 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
     }
 
     private void dataRead() {
+        dataRead(null);
+    }
+
+    private void dataRead(final Printer removePrinter) {
         if (mChildEventListener == null) {
             mChildEventListener = new ChildEventListener() {
                 @Override
@@ -109,6 +120,8 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
 
+                    mPrinters.remove(dataSnapshot.getValue(Printer.class));
+                    mAdapter.notifyDataSetChanged();
                 }
 
                 @Override
