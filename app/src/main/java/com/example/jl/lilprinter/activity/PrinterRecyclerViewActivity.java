@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActivity extends AppCompatActivity {
+public class PrinterRecyclerViewActivity extends AppCompatActivity {
     private static final String TAG = "ListActivityError";
 
     private DatabaseReference mDatabase;
@@ -64,7 +64,6 @@ public class ListActivity extends AppCompatActivity {
 
                     mPrinters.add(printer);
                     mAdapter.notifyDataSetChanged();
-                    Log.v(TAG, printer.getLocation());
                 }
 
                 @Override
@@ -73,7 +72,6 @@ public class ListActivity extends AppCompatActivity {
                         Printer printer = printerSnapshot.getValue(Printer.class);
                         mPrinters.add(printer);
                         mAdapter.notifyDataSetChanged();
-                        Log.v(TAG, printer.getLocation());
                     }
                 }
 
