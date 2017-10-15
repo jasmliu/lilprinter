@@ -99,6 +99,108 @@ public class Printers {
         multistudio.setLng(-84.3957);
         printers.add(multistudio);
 
+        Printer klaus = new Printer();
+        klaus.setLocation("Klaus");
+        klaus.setLat(33.7773);
+        klaus.setLng(-84.3962);
+        printers.add(klaus);
+
+        Printer mrdc = new Printer();
+        mrdc.setLocation("MRDC");
+        mrdc.setLat(33.7776);
+        mrdc.setLng(-84.4013);
+        printers.add(mrdc);
+
+        Printer cob = new Printer();
+        cob.setLocation("Scheller College of Business");
+        cob.setLat(33.7763);
+        cob.setLng(-84.3878);
+        printers.add(cob);
+
+        Printer susedu = new Printer();
+        susedu.setLocation("Sustainable Education");
+        susedu.setLat(33.779);
+        susedu.setLng(-84.4048);
+        printers.add(susedu);
+
+        Printer vanleer = new Printer();
+        vanleer.setLocation("Van Leer");
+        vanleer.setLat(33.4633);
+        vanleer.setLng(-84.2351);
+        printers.add(vanleer);
+
+        Printer arch = new Printer();
+        arch.setLocation("Architecture");
+        arch.setLat(33.7761);
+        arch.setLng(-84.3961);
+        printers.add(arch);
+
+        Printer cherry = new Printer();
+        cherry.setLocation("Cherry Emerson");
+        cherry.setLat(33.7779);
+        cherry.setLng(-84.3972);
+        printers.add(cherry);
+
+        Printer whitaker = new Printer();
+        whitaker.setLocation("Whitaker");
+        whitaker.setLat(33.7785);
+        whitaker.setLng(-84.3967);
+        printers.add(whitaker);
+
+        Printer love = new Printer();
+        love.setLocation("Love");
+        love.setLat(33.7766);
+        love.setLng(-84.4018);
+        printers.add(love);
+
+        Printer groclo = new Printer();
+        groclo.setLocation("Groseclose");
+        groclo.setLat(33.7758);
+        groclo.setLng(-84.4019);
+        printers.add(groclo);
+
+        Printer isye = new Printer();
+        isye.setLocation("ISYE Annex");
+        isye.setLat(33.7758);
+        isye.setLng(-84.4019);
+        printers.add(isye);
+
+        Printer ford = new Printer();
+        ford.setLocation("Ford ES&T");
+        ford.setLat(33.7789);
+        ford.setLng(-84.396);
+        printers.add(ford);
+
+        Printer boggs = new Printer();
+        boggs.setLocation("Boggs");
+        boggs.setLat(33.7757);
+        boggs.setLng(-84.3999);
+        printers.add(boggs);
+
+        Printer mason = new Printer();
+        mason.setLocation("Mason");
+        mason.setLat(33.7766);
+        mason.setLng(-84.3984);
+        printers.add(mason);
+
+        Printer hinman = new Printer();
+        hinman.setLocation("Hinman");
+        hinman.setLat(33.7747);
+        hinman.setLng(-84.3953);
+        printers.add(hinman);
+
+        Printer biltmore = new Printer();
+        biltmore.setLocation("Biltmore");
+        biltmore.setLat(33.7537);
+        biltmore.setLng(-84.3863);
+        printers.add(biltmore);
+
+        Printer lang = new Printer();
+        lang.setLocation("Language Institute");
+        lang.setLat(33.7774);
+        lang.setLng(-84.3866);
+        printers.add(lang);
+
     }
 
     public List<Printer> getPrinters() {
