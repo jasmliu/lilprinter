@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class PrinterDetailActivity extends AppCompatActivity {
     private Printer printer;
 
-    TextView typeText;
+    TextView typeText, descriptionText;
     ImageButton paperStatus;
     ImageButton jamStatus;
     ImageButton inkStatus;
@@ -37,6 +37,9 @@ public class PrinterDetailActivity extends AppCompatActivity {
         Log.v("lime", printer.getLocation());
         Log.v("LEMON", printer.getType());
         typeText.setText(printer.getType());
+
+        descriptionText = findViewById(R.id.txtv)
+
 
         paperStatus = findViewById(R.id.btn_paperStatus);
         if(!printer.getPaperStatus()) {
