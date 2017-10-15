@@ -122,6 +122,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
                     if (!printer.getStatus()) {
                         printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_bad);
+                    } else {
+                        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
                     }
                     Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
                     marker.setTag(printer);
@@ -129,11 +131,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
                         Printer printer = dataSnapshot.getValue(Printer.class);
                         LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
                         if (!printer.getStatus()) {
                             printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_bad);
+                        } else {
+                            printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
                         }
                         Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
                         marker.setTag(printer);
