@@ -36,11 +36,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
-        getIntent().putExtra("users", "");
+        getIntent().putExtra("user", "");
 
         setContentView(R.layout.activity_maps);
-
-
 
         FloatingActionButton fabAddPrinter = findViewById(R.id.fabAddPrinter);
         fabAddPrinter.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +49,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(intent);
             }
         });
-
-
 
         FloatingActionButton fabLogin = findViewById(R.id.fabLogin);
         fabLogin.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +103,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
               //view printer info
               Intent intent = new Intent(MapsActivity.this, PrinterDetailActivity.class);
+              intent.putExtra("user", getIntent().getStringExtra("user"));
               intent.putExtra("printer", printer);
               startActivity(intent);
               return false;

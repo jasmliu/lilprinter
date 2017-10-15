@@ -98,6 +98,7 @@ public class PrinterEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PrinterEditActivity.this, PrinterDetailActivity.class);
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 intent.putExtra("printer", printer);
                 startActivity(intent);
             }

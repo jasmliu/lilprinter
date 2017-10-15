@@ -101,6 +101,7 @@ public class PrinterAddActivity extends AppCompatActivity {
                 PrinterFirebaseAdapter db = new PrinterFirebaseAdapter();
                 db.writePrinter(printer);
                 Intent intent = new Intent(PrinterAddActivity.this, PrinterRecyclerViewActivity.class);
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 intent.putExtra("printer", printer);
                 startActivity(intent);
             }

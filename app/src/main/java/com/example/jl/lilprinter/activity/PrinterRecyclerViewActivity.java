@@ -40,7 +40,12 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        if (getIntent().getStringExtra("user").equals("ADMIN")) {
+            setContentView(R.layout.activity_list_user);
+        } else {
+            setContentView(R.layout.activity_list_user);
+        }
+
 
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
@@ -50,21 +55,6 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
 //            PrinterFirebaseAdapter db =new PrinterFirebaseAdapter();
 //            db.writePrinter(p);
 //        }
-
-
-
-        FloatingActionButton addFab = findViewById(R.id.fabAdd);
-
-        addFab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -83,12 +73,25 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
         };
         ItemTouchHelper iTH = new ItemTouchHelper(simpleItemTouchCallback);
 
+        if (getIntent().getStringExtra("user").equals("ADMIN")) {
+            FloatingActionButton addFab = findViewById(R.id.fabAdd);
 
+            addFab.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), PrinterAddActivity.class);
+                    intent.putExtra("user", getIntent().getStringExtra("user"));
+                    startActivity(intent);
+                }
+            });
+            iTH.attachToRecyclerView(mRecyclerView);
+        }
 
         mRecyclerView = findViewById(R.id.printer_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        iTH.attachToRecyclerView(mRecyclerView);
+
         mPrinters = new ArrayList<>();
         mAdapter = new PrinterRecyclerViewAdapter(mPrinters);
         mRecyclerView.setAdapter(mAdapter);
