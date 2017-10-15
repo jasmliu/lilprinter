@@ -8,9 +8,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.jl.lilprinter.R;
+import com.example.jl.lilprinter.data.PrinterFirebaseAdapter;
 import com.example.jl.lilprinter.model.Printer;
 
-public class PrinterEditActivity extends AppCompatActivity {
+public class PrinterAddActivity extends AppCompatActivity {
 
     ImageButton paperStatus;
     ImageButton jamStatus;
@@ -24,9 +25,9 @@ public class PrinterEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_printer_edit);
+        setContentView(R.layout.activity_printer_add);
 
-        printer = getIntent().getExtras().getParcelable("printer");
+        printer = new Printer();
 
         paperStatus = findViewById(R.id.btn_paperStatus);
         if(!printer.getPaperStatus()) {
@@ -97,7 +98,9 @@ public class PrinterEditActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PrinterEditActivity.this, PrinterDetailActivity.class);
+                PrinterFirebaseAdapter db = new PrinterFirebaseAdapter();
+                db.writePrinter(printer);
+                Intent intent = new Intent(PrinterAddActivity.this, PrinterRecyclerViewActivity.class);
                 intent.putExtra("user", getIntent().getStringExtra("user"));
                 intent.putExtra("printer", printer);
                 startActivity(intent);

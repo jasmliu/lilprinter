@@ -35,6 +35,7 @@ public class PrinterRecyclerViewAdapter extends RecyclerView.Adapter<PrinterRecy
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), PrinterDetailActivity.class);
+            intent.putExtra("user", "");
             intent.putExtra("printer", printer);
             v.getContext().startActivity(intent);
         }
