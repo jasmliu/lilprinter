@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    
+
     <TextView
         android:id="@+id/txtView_status"
         style="EditTextStyle"
@@ -24,6 +25,17 @@
         android:text="BW or Color"
         android:textSize="25dp"
         android:layout_below="@+id/txtView_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        style="EditTextStyle"
+        android:fontFamily="sans-serif-condensed"/>
+
+    <TextView
+        android:id="@+id/txtView_description"
+        android:text="Description"
+        android:textSize="25dp"
+        android:layout_below="@+id/txtView_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -125,11 +137,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="EditTextStyle"
-        android:layout_alignParentBottom="true"
+        android:fontFamily="sans-serif-monospace"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/btn_inkStatus"
         android:layout_alignLeft="@+id/txtView_ink"
-        android:layout_alignStart="@+id/txtView_ink"
-        android:layout_marginBottom="102dp"
-        android:fontFamily="sans-serif-monospace"/>
+        android:layout_alignStart="@+id/txtView_ink" />
 
     <ImageButton
         android:id="@+id/btn_computerStatus"
