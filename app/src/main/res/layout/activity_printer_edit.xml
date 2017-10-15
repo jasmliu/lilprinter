@@ -58,11 +58,9 @@
     <TextView
         android:id="@+id/txtView_jam"
         android:text="Jam:"
-
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         style="EditTextStyle"
         android:layout_marginBottom="92dp"
         android:layout_above="@+id/btn_inkStatus"
@@ -75,7 +73,6 @@
         android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:background="#ffffff"
         android:typeface="monospace"
         android:layout_alignBottom="@+id/txtView_jam"
@@ -86,11 +83,9 @@
     <TextView
         android:id="@+id/txtView_ink"
         android:text="Ink:"
-
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         style="EditTextStyle"
         android:layout_above="@+id/txtView_computer"
         android:layout_alignLeft="@+id/txtView_paper"
@@ -103,8 +98,6 @@
         android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
         android:background="#ffffff"
         android:typeface="monospace"
         android:layout_alignTop="@+id/txtView_ink"
@@ -117,17 +110,13 @@
     <TextView
         android:id="@+id/txtView_computer"
         android:text="Computer:"
-
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
         style="EditTextStyle"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/txtView_ink"
         android:layout_alignStart="@+id/txtView_ink"
-
         android:layout_marginBottom="102dp" />
 
 
