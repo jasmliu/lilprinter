@@ -42,8 +42,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mDatabase = FirebaseDatabase.getInstance().getReference();
         printerCloudEndPoint = mDatabase.child("printers");
 
-        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.checkmark);
-
         getIntent().putExtra("user" , "");
 
         if (getIntent().getExtras().getString("user").equals("ADMIN")) {
@@ -104,7 +102,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.checkmark);
         //restrict user panning
         LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
