@@ -45,18 +45,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (getIntent().getStringExtra("user") == null) {
             getIntent().putExtra("user", "");
         }
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_maps_users);
         Log.d(TAG, "Hello World");
         Log.d(TAG, getIntent().getExtras().getString("user"));
-        FloatingActionButton fabAddPrinter = findViewById(R.id.fabAddPrinter);
-        fabAddPrinter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                intent.putExtra("user", getIntent().getStringExtra("user"));
-                startActivity(intent);
-            }
-        });
+
 
         FloatingActionButton fabLogin = findViewById(R.id.fabLogin);
         fabLogin.setOnClickListener(new View.OnClickListener() {
