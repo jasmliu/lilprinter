@@ -18,7 +18,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
     <TextView
-        android:id="@+id/txtView_status"
+        android:id="@+id/txtView_color"
         style="EditTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,13 +26,11 @@
         android:layout_marginTop="80dp"
         android:textStyle="bold"
         android:fontFamily="monospace"
-        android:text="Printer Status"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="30dp"/>
 
     <TextView
-        android:id="@+id/txtView_color"
-        android:text="BW or Color"
+        android:id="@+id/txtView_status"
         android:textSize="25dp"
         android:layout_below="@+id/txtView_status"
         android:layout_width="wrap_content"

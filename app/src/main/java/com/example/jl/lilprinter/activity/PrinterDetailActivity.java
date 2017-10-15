@@ -34,12 +34,10 @@ public class PrinterDetailActivity extends AppCompatActivity {
         printer = getIntent().getExtras().getParcelable("printer");
 
         typeText = findViewById(R.id.txtView_color);
-        Log.v("lime", printer.getLocation());
-        Log.v("LEMON", printer.getType());
         typeText.setText(printer.getType());
 
-        descriptionText = findViewById(R.id.txtv)
-
+        descriptionText = findViewById(R.id.txtView_description);
+        descriptionText.setText(printer.getDescription());
 
         paperStatus = findViewById(R.id.btn_paperStatus);
         if(!printer.getPaperStatus()) {
