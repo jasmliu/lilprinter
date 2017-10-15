@@ -62,7 +62,6 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
                     Printer printer = dataSnapshot.getValue(Printer.class);
                     mPrinters.add(printer);
                     mAdapter.notifyDataSetChanged();
-                    Log.v(TAG, printer.getLocation());
                 }
 
                 @Override
@@ -71,7 +70,6 @@ public class PrinterRecyclerViewActivity extends AppCompatActivity {
                         Printer printer = printerSnapshot.getValue(Printer.class);
                         mPrinters.add(printer);
                         mAdapter.notifyDataSetChanged();
-                        Log.v(TAG, printer.getLocation());
                     }
                 }
 

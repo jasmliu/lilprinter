@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.example.jl.lilprinter.R;
@@ -15,20 +16,29 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-
     private GoogleMap mMap;
-
-    private ArrayList<Printer> printers;
+    private DatabaseReference mDatabase, printerCloudEndPoint;
+    private List<Printer> mPrinters;
+    private ChildEventListener mChildEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        printerCloudEndPoint = mDatabase.child("printers");
+
         getIntent().putExtra("user" , "");
 
         if (getIntent().getExtras().getString("user").equals("ADMIN")) {
@@ -78,25 +88,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        printers = new ArrayList<>();
-        createPrinters();
-    }
-
-    private void createPrinters() {
-        //todo: create printers from data file?
-        Printer woodys = new Printer();
-        woodys.setId(Integer.toString(1));
-        woodys.setLocation("woody's");
-        woodys.setLat(33.778967);
-        woodys.setLng(-84.406499);
-        printers.add(woodys);
-
-        Printer library = new Printer();
-        library.setId(Integer.toString(2));
-        library.setLocation("library");
-        library.setLat(33.774401);
-        library.setLng(-84.395841);
-        printers.add(library);
+        dataRead();
+        printerCloudEndPoint.addChildEventListener(mChildEventListener);
     }
 
     /**.
@@ -107,19 +100,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
 
         //restrict user panning
-        LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349),
-                new LatLng(33.781547, -84.390801));
+        LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
 
         //todo: center camera on current location. if not within tech bounds, center on tech
-
-        //creates markers from printers list
-        //todo: set marker icons as printers (design)
-        for (Printer p : printers) {
-            LatLng latlng = new LatLng(p.getLat(), p.getLng());
-            Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
-            marker.setTag(p); //pairs marker with Printer object
-        }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
               @Override
@@ -134,6 +118,45 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
               }
           });
 
+    }
+
+    private void dataRead() {
+        if (mChildEventListener == null) {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Printer printer = dataSnapshot.getValue(Printer.class);
+                    LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                    marker.setTag(printer);
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
+                        Printer printer = printerSnapshot.getValue(Printer.class);
+                        LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                        marker.setTag(printer);
+                    }
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+        }
     }
 }
 
