@@ -32,7 +32,7 @@
     <TextView
         android:id="@+id/txtView_status"
         android:textSize="25dp"
-        android:layout_below="@+id/txtView_status"
+        android:layout_below="@+id/txtView_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
