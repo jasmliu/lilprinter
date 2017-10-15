@@ -52,4 +52,6 @@ public class PrinterDetailActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

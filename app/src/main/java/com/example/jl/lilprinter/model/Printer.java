@@ -23,12 +23,13 @@ public class Printer implements Parcelable {
     private double lng;
 
     public Printer() {
-        this("", "unknown", "unknown", true, true, true, true, true, 0, 0);
+        this("", "unknown", "unknown", "unknown", true, true, true, true, true, 0, 0);
     }
 
-    public Printer(String id, String location, String type, boolean paperStatus, boolean jamStatus, boolean inkStatus,boolean computerStatus, boolean status, double lat, double lng) {
+    public Printer(String id, String location, String description, String type, boolean paperStatus, boolean jamStatus, boolean inkStatus,boolean computerStatus, boolean status, double lat, double lng) {
         this.id = id;
         this.location = location;
+        this.description = description;
         this.type = type;
         this.status = status;
         this.paperStatus = paperStatus;
@@ -59,6 +60,14 @@ public class Printer implements Parcelable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getType() {
@@ -134,6 +143,7 @@ public class Printer implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(location);
+        dest.writeString(description);
         dest.writeString(type);
         dest.writeBooleanArray(new boolean[] {paperStatus, jamStatus, inkStatus, computerStatus, status});
         dest.writeDouble(lat);
@@ -153,6 +163,7 @@ public class Printer implements Parcelable {
     private Printer(Parcel in) {
         id = in.readString();
         location = in.readString();
+        description = in.readString();
         type = in.readString();
         boolean[] boolArr = new boolean[5];
         in.readBooleanArray(boolArr);
