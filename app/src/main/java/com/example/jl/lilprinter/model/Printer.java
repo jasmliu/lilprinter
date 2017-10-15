@@ -14,11 +14,9 @@ public class Printer implements Parcelable {
     private String type;
     private boolean status;
     private boolean computerStatus;
-
     private boolean paperStatus;
     private boolean jamStatus;
     private boolean inkStatus;
-
     private double lat;
     private double lng;
 
@@ -60,14 +58,6 @@ public class Printer implements Parcelable {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getType() {
@@ -132,6 +122,14 @@ public class Printer implements Parcelable {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
