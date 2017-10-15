@@ -77,6 +77,35 @@ public class PrinterDetailActivity extends AppCompatActivity {
 
     }
 
+    public void update() {
+        setContentView(R.layout.activity_printer_view);
+
+        printer = getIntent().getExtras().getParcelable("printer");
+
+        typeText = (TextView) findViewById(R.id.txtView_color);
+        typeText.setText(printer.getType());
+
+        paperStatus = findViewById(R.id.btn_paperStatus);
+        if(!printer.getPaperStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
+
+        jamStatus = findViewById(R.id.btn_jamStatus);
+        if(!printer.getJamStatus()) {
+            jamStatus.setImageResource(R.drawable.error);
+        }
+
+        inkStatus = findViewById(R.id.btn_inkStatus);
+        if(!printer.getInkStatus()) {
+            inkStatus.setImageResource(R.drawable.error);
+        }
+
+        computerStatus = findViewById(R.id.btn_computerStatus);
+        if(!printer.getComputerStatus()) {
+            paperStatus.setImageResource(R.drawable.error);
+        }
+    }
+
 
 
 }
