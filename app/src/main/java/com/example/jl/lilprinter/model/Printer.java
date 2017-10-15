@@ -15,25 +15,26 @@ public class Printer implements Parcelable {
     private boolean status;
     private boolean computerStatus;
 
-    //private boolean paperStatus;
-    //private boolean jamStatus;
-    //private boolean inkStatus;
+    private boolean paperStatus;
+    private boolean jamStatus;
+    private boolean inkStatus;
 
     private double lat;
     private double lng;
 
     public Printer() {
-        this("", "unknown", "unknown", true, 0, 0);
+        this("", "unknown", "unknown", true, true, true, true, true, 0, 0);
     }
 
-    public Printer(String id, String location, String type, boolean status, double lat, double lng) {
+    public Printer(String id, String location, String type, boolean paperStatus, boolean jamStatus, boolean inkStatus,boolean computerStatus, boolean status, double lat, double lng) {
         this.id = id;
         this.location = location;
         this.type = type;
         this.status = status;
-        //this.paperStatus = paperStatus;
-        //this.jamStatus = jamStatus;
-        //this.inkStatus = inkStatus;
+        this.paperStatus = paperStatus;
+        this.jamStatus = jamStatus;
+        this.inkStatus = inkStatus;
+        this.computerStatus = computerStatus;
         this.lat = lat;
         this.lng = lng;
 
@@ -76,7 +77,6 @@ public class Printer implements Parcelable {
         this.status = status;
     }
 
-    /*
     public boolean getPaperStatus() {
         return paperStatus;
     }
@@ -99,7 +99,15 @@ public class Printer implements Parcelable {
 
     public void setInkStatus(boolean inkStatus) {
         this.inkStatus = inkStatus;
-    }*/
+    }
+
+    public boolean getComputerStatus() {
+        return computerStatus;
+    }
+
+    public void setComputerStatus(boolean computerStatus) {
+        this.computerStatus = computerStatus;
+    }
 
     public double getLat() {
         return this.lat;
