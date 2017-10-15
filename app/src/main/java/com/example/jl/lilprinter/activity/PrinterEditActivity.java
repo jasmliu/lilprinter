@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PrinterEditActivity extends AppCompatActivity {
 
@@ -21,12 +23,17 @@ public class PrinterEditActivity extends AppCompatActivity {
     Button update;
     Printer printer;
 
+    private DatabaseReference mDatabase;
+    private DatabaseReference printerCloudEndPoint;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_printer_edit);
+
+        mDatabase =  FirebaseDatabase.getInstance().getReference();
+        printerCloudEndPoint = mDatabase.child("printers");
 
         printer = getIntent().getExtras().getParcelable("printer");
 
@@ -101,10 +108,14 @@ public class PrinterEditActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PrinterEditActivity.this, PrinterDetailActivity.class);
                 intent.putExtra("printer", printer);
+                printerCloudEndPoint.child(printer.getId()).setValue(printer);
                 startActivity(intent);
             }
         });
 
+        if (printer.getComputerStatus() || printer.getPaperStatus() || printer.getInkStatus() || printer.getJamStatus()) {
+            printer.setStatus(false);
+        }
 
     }
 }

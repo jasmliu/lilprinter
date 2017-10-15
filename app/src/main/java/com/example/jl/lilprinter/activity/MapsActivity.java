@@ -103,17 +103,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         //restrict user panning
+
         printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
         LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
 
+        dataRead();
         //todo: center camera on current location. if not within tech bounds, center on tech
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
               @Override
               public boolean onMarkerClick(Marker marker) {
               Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
-
               //view printer info
               Intent intent = new Intent(MapsActivity.this, PrinterDetailActivity.class);
               intent.putExtra("printer", printer);
@@ -140,12 +141,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
-                        Printer printer = printerSnapshot.getValue(Printer.class);
+
+                        Printer printer = dataSnapshot.getValue(Printer.class);
                         LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
+                        if (!printer.getStatus()) {
+                            printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_bad);
+                        }
                         Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
                         marker.setTag(printer);
-                    }
+
                 }
 
                 @Override

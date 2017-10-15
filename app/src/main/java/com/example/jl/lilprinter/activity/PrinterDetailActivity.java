@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by jav on 10/14/2017.
@@ -25,11 +27,16 @@ public class PrinterDetailActivity extends AppCompatActivity {
     ImageButton jamStatus;
     ImageButton inkStatus;
     ImageButton computerStatus;
+    FloatingActionButton map;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_printer_view);
+
+
 
         printer = getIntent().getExtras().getParcelable("printer");
 
@@ -63,6 +70,17 @@ public class PrinterDetailActivity extends AppCompatActivity {
         }
 
 
+
+        map = findViewById(R.id.fabMap);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
+                intent.putExtra("user", getIntent().getExtras().getString("user"));
+                intent.putExtra("print", printer);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton edit = findViewById(R.id.fabEdit);
         edit.setOnClickListener(new View.OnClickListener() {
