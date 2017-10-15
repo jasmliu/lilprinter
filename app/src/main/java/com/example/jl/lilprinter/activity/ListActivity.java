@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.value;
+
 public class ListActivity extends AppCompatActivity {
     private static final String TAG = "ListActivityERROR";
 
@@ -35,6 +37,8 @@ public class ListActivity extends AppCompatActivity {
     private List<Printer> mPrinters;
 
     private ChildEventListener mChildEventListener;
+
+    private List<String> astrings;
 
 
     @Override
@@ -49,6 +53,8 @@ public class ListActivity extends AppCompatActivity {
         mPrinters = new ArrayList<>();
 
         mPrinters.add(new Printer());
+
+        astrings = new ArrayList<>();
 
         /*
         printerCloudEndPoint.addValueEventListener(new ValueEventListener() {
@@ -67,7 +73,9 @@ public class ListActivity extends AppCompatActivity {
         });*/
 
         dataRead();
+        printerCloudEndPoint.addChildEventListener(mChildEventListener);
         Log.v(TAG, "CHOCOLATE" + mPrinters.get(0));
+        Log.v(TAG, "SIZE" + astrings.size());
     }
 
     private void dataRead() {
@@ -76,9 +84,9 @@ public class ListActivity extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Printer value = dataSnapshot.getValue(Printer.class);
-                    Log.v(TAG, "SODA" + value.getLocation());
-                    Log.v(TAG, "COOKIE" + value);
                     mPrinters.add(value);
+                    astrings.add(value.getLocation());
+                    Log.v(TAG, astrings.get(0));
                 }
 
                 @Override
@@ -86,6 +94,7 @@ public class ListActivity extends AppCompatActivity {
                     for (DataSnapshot printerSnapshot : dataSnapshot.getChildren()) {
                         Printer printer = printerSnapshot.getValue(Printer.class);
                         mPrinters.add(printer);
+                        astrings.add(printer.getLocation());
                     }
                 }
 
@@ -104,7 +113,6 @@ public class ListActivity extends AppCompatActivity {
 
                 }
             };
-            printerCloudEndPoint.addChildEventListener(mChildEventListener);
             Log.v(TAG, "CHOCOLATE" + Integer.toString(mPrinters.size()));
         }
     }
