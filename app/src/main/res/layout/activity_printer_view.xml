@@ -28,7 +28,7 @@
         android:textStyle="bold"
         android:fontFamily="monospace"
         android:textAppearance="@android:style/TextAppearance.Large"
-        android:textSize="30dp"/>
+        android:textSize="25dp"/>
 
     <TextView
         android:id="@+id/txtView_description"
@@ -57,12 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyle"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="23dp"
         android:layout_below="@+id/txtView_color"
-        android:layout_toLeftOf="@+id/txtView_location"
-        android:layout_toStartOf="@+id/txtView_location"
-        android:layout_marginRight="7dp"
-        android:layout_marginEnd="7dp" />
+        android:layout_toRightOf="@+id/fabAdd"
+        android:layout_toEndOf="@+id/fabAdd" />
 
 
     <ImageButton
