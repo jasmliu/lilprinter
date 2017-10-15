@@ -20,6 +20,7 @@
 
     <TextView
         android:id="@+id/txtView_location"
+        android:text="@string/location"
         style="EditTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
 
     <TextView
         android:id="@+id/txtView_description"
+        android:text="Description"
         android:textSize="20dp"
         android:layout_below="@+id/txtView_location"
         android:layout_width="wrap_content"
@@ -42,7 +44,7 @@
 
     <TextView
         android:id="@+id/txtView_color"
-        android:text="Description"
+        android:text="Color"
         android:textSize="20dp"
         android:layout_below="@+id/txtView_description"
         android:layout_width="wrap_content"
@@ -57,11 +59,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyle"
-        android:layout_marginTop="23dp"
-        android:layout_below="@+id/txtView_color"
-        android:layout_toRightOf="@+id/fabAdd"
-        android:layout_toEndOf="@+id/fabAdd" />
-
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/txtView_description"
+        android:layout_alignLeft="@+id/txtView_description"
+        android:layout_alignStart="@+id/txtView_description" />
 
     <ImageButton
         android:id="@+id/btn_paperStatus"

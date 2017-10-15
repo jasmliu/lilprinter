@@ -10,4 +10,5 @@
 
     <string name="auth_failed">Authentication Failed</string>
     <string name="minimum_password">Password must be longer than 6 characters</string>
+    <string name="location">Location</string>
 </resources>
