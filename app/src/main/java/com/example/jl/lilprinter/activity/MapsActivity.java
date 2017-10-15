@@ -93,8 +93,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.checkmark);
         //restrict user panning
+        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
         LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
 
@@ -122,6 +122,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Printer printer = dataSnapshot.getValue(Printer.class);
                     LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
+                    if (!printer.getStatus()) {
+                        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_bad);
+                    }
                     Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
                     marker.setTag(printer);
                 }
