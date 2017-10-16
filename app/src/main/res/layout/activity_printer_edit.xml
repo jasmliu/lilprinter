@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:id="@+id/txtView_editTitle"
+        android:text="EDIT"
+        android:textSize="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAppearance="@android:style/TextAppearance.Large" />
+
+    <TextView
+        android:id="@+id/txtView_paper"
+        android:text="Paper:"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="EditTextStyle"
+        android:fontFamily="monospace"
+        android:layout_alignTop="@+id/btn_paperStatus"
+        android:layout_alignLeft="@+id/txtView_jam"
+        android:layout_alignStart="@+id/txtView_jam" />
+
+    <ImageButton
+        android:id="@+id/btn_paperStatus"
+        android:src="@drawable/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:typeface="monospace"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/txtView_editTitle"
+        android:layout_toRightOf="@+id/btn_update"
+        android:layout_toEndOf="@+id/btn_update" />
+
+
+    <TextView
+        android:id="@+id/txtView_jam"
+        android:text="No Jam:"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="EditTextStyle"
+        android:fontFamily="monospace"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/btn_paperStatus"
+        android:layout_alignLeft="@+id/txtView_ink"
+        android:layout_alignStart="@+id/txtView_ink" />
+
+
+    <ImageButton
+        android:id="@+id/btn_jamStatus"
+        android:src="@drawable/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:typeface="monospace"
+        android:layout_alignTop="@+id/txtView_jam"
+        android:layout_alignLeft="@+id/btn_paperStatus"
+        android:layout_alignStart="@+id/btn_paperStatus" />
+
+
+    <TextView
+        android:id="@+id/txtView_ink"
+        android:text="Ink:"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="EditTextStyle"
+        android:fontFamily="monospace"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/btn_jamStatus"
+        android:layout_toLeftOf="@+id/txtView_editTitle"
+        android:layout_toStartOf="@+id/txtView_editTitle" />
+
+
+    <ImageButton
+        android:id="@+id/btn_inkStatus"
+        android:src="@drawable/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:typeface="monospace"
+        android:layout_alignTop="@+id/txtView_ink"
+        android:layout_alignLeft="@+id/btn_jamStatus"
+        android:layout_alignStart="@+id/btn_jamStatus" />
+
+
+    <TextView
+        android:id="@+id/txtView_computer"
+        android:text="Computer:"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="EditTextStyle"
+        android:fontFamily="monospace"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/btn_inkStatus"
+        android:layout_alignLeft="@+id/txtView_ink"
+        android:layout_alignStart="@+id/txtView_ink" />
+
+
+    <ImageButton
+        android:id="@+id/btn_computerStatus"
+        android:src="@drawable/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:typeface="monospace"
+        android:layout_alignTop="@+id/txtView_computer"
+        android:layout_alignLeft="@+id/btn_inkStatus"
+        android:layout_alignStart="@+id/btn_inkStatus" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:text="UPDATE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/btn_computerStatus"
+        android:layout_centerHorizontal="true" />
+
+
+
+</RelativeLayout>

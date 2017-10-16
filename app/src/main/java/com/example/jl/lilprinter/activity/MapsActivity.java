@@ -4,50 +4,54 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.jl.lilprinter.R;
 import com.example.jl.lilprinter.model.Printer;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
-
+    private final String TAG = "Map Activity Error";
 
     private GoogleMap mMap;
-
-    private ArrayList<Printer> printers;
+    private DatabaseReference mDatabase, printerCloudEndPoint;
+    private ChildEventListener mChildEventListener;
+    private BitmapDescriptor printer_icon;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getIntent().putExtra("user" , "");
 
-        if (getIntent().getExtras().getString("user").equals("ADMIN")) {
-            setContentView(R.layout.activity_maps_admin);
-        } else {
-            setContentView(R.layout.activity_maps_users);
-        }
+        progressBar = findViewById(R.id.progressBar);
 
-        if (getIntent().getExtras().getString("user").equals("ADMIN")) {
-            FloatingActionButton fabAddPrinter = findViewById(R.id.fabAddPrinter);
-            fabAddPrinter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                    intent.putExtra("user", getIntent().getExtras().getString("user"));
-                    startActivity(intent);
-                }
-            });
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        printerCloudEndPoint = mDatabase.child("printers");
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        getIntent().putExtra("test", "test");
+        if (getIntent().getStringExtra("user") == null) {
+            getIntent().putExtra("user", "");
         }
+        setContentView(R.layout.activity_maps_users);
+        Log.d(TAG, "Hello World");
+        Log.d(TAG, getIntent().getExtras().getString("user"));
 
 
         FloatingActionButton fabLogin = findViewById(R.id.fabLogin);
@@ -55,7 +59,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                intent.putExtra("user", getIntent().getExtras().getString("user"));
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
             }
         });
@@ -65,8 +69,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ListActivity.class);
-                intent.putExtra("user", getIntent().getExtras().getString("user"));
+                progressBar.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(MapsActivity.this, PrinterRecyclerViewActivity.class);
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
             }
         });
@@ -78,25 +83,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        printers = new ArrayList<>();
-        createPrinters();
-    }
 
-    private void createPrinters() {
-        //todo: create printers from data file?
-        Printer woodys = new Printer();
-        woodys.setId(Integer.toString(1));
-        woodys.setLocation("woody's");
-        woodys.setLat(33.778967);
-        woodys.setLng(-84.406499);
-        printers.add(woodys);
-
-        Printer library = new Printer();
-        library.setId(Integer.toString(2));
-        library.setLocation("library");
-        library.setLat(33.774401);
-        library.setLng(-84.395841);
-        printers.add(library);
+        dataRead();
+        printerCloudEndPoint.addChildEventListener(mChildEventListener);
     }
 
     /**.
@@ -104,36 +93,82 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        progressBar = findViewById(R.id.progressBar);
 
+        mMap = googleMap;
+        Log.d(TAG, "Map opens, data read");
         //restrict user panning
-        LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349),
-                new LatLng(33.781547, -84.390801));
+        dataRead();
+        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
+        LatLngBounds tech = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         mMap.setLatLngBoundsForCameraTarget(tech);
 
+        dataRead();
         //todo: center camera on current location. if not within tech bounds, center on tech
-
-        //creates markers from printers list
-        //todo: set marker icons as printers (design)
-        for (Printer p : printers) {
-            LatLng latlng = new LatLng(p.getLat(), p.getLng());
-            Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
-            marker.setTag(p); //pairs marker with Printer object
-        }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
               @Override
               public boolean onMarkerClick(Marker marker) {
-              Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
-
-              //view printer info
-              Intent intent = new Intent(MapsActivity.this, PrinterViewActivity.class);
-              intent.putExtra("printer", printer);
-              startActivity(intent);
-              return false;
+                  progressBar.setVisibility(View.VISIBLE);
+                  Printer printer = (Printer) marker.getTag(); //retrieve Printer object from the marker
+                  //view printer info
+                  Intent intent = new Intent(MapsActivity.this, PrinterDetailActivity.class);
+                  intent.putExtra("user", getIntent().getStringExtra("user"));
+                  intent.putExtra("printer", printer);
+                  startActivity(intent);
+                  return false;
               }
           });
 
+    }
+
+    private void dataRead() {
+        if (mChildEventListener == null) {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Printer printer = dataSnapshot.getValue(Printer.class);
+                    LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
+                    if (!printer.getStatus()) {
+                        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_bad);
+                    } else {
+                        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
+                    }
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
+                    marker.setTag(printer);
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    Printer printer = dataSnapshot.getValue(Printer.class);
+                    LatLng latlng = new LatLng(printer.getLat(), printer.getLng());
+                    Log.d(TAG, Boolean.toString(printer.getStatus()));
+                    if (!printer.getStatus()) {
+                        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_bad);
+                    } else {
+                        printer_icon = BitmapDescriptorFactory.fromResource(R.drawable.printer_good);
+                    }
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng).icon(printer_icon));
+                    marker.setTag(printer);
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+        }
     }
 }
 

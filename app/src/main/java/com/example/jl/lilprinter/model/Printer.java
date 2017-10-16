@@ -10,30 +10,30 @@ import android.os.Parcelable;
 public class Printer implements Parcelable {
     private String id;
     private String location;
+    private String description;
     private String type;
-
     private boolean status;
     private boolean computerStatus;
-
-    //private boolean paperStatus;
-    //private boolean jamStatus;
-    //private boolean inkStatus;
-
+    private boolean paperStatus;
+    private boolean jamStatus;
+    private boolean inkStatus;
     private double lat;
     private double lng;
 
     public Printer() {
-        this("", "unknown", "unknown", true, 0, 0);
+        this("", "unknown", "unknown", "unknown", true, true, true, true, true, 0, 0);
     }
 
-    public Printer(String id, String location, String type, boolean status, double lat, double lng) {
+    public Printer(String id, String location, String description, String type, boolean paperStatus, boolean jamStatus, boolean inkStatus,boolean computerStatus, boolean status, double lat, double lng) {
         this.id = id;
         this.location = location;
+        this.description = description;
         this.type = type;
         this.status = status;
-        //this.paperStatus = paperStatus;
-        //this.jamStatus = jamStatus;
-        //this.inkStatus = inkStatus;
+        this.paperStatus = paperStatus;
+        this.jamStatus = jamStatus;
+        this.inkStatus = inkStatus;
+        this.computerStatus = computerStatus;
         this.lat = lat;
         this.lng = lng;
 
@@ -76,7 +76,6 @@ public class Printer implements Parcelable {
         this.status = status;
     }
 
-    /*
     public boolean getPaperStatus() {
         return paperStatus;
     }
@@ -99,7 +98,15 @@ public class Printer implements Parcelable {
 
     public void setInkStatus(boolean inkStatus) {
         this.inkStatus = inkStatus;
-    }*/
+    }
+
+    public boolean getComputerStatus() {
+        return computerStatus;
+    }
+
+    public void setComputerStatus(boolean computerStatus) {
+        this.computerStatus = computerStatus;
+    }
 
     public double getLat() {
         return this.lat;
@@ -117,6 +124,20 @@ public class Printer implements Parcelable {
         this.lng = lng;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Printer printer = (Printer) obj;
+        return this.id.equals(printer.id);
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -126,8 +147,9 @@ public class Printer implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(location);
+        dest.writeString(description);
         dest.writeString(type);
-        dest.writeBooleanArray(new boolean[] {status});
+        dest.writeBooleanArray(new boolean[] {paperStatus, jamStatus, inkStatus, computerStatus, status});
         dest.writeDouble(lat);
         dest.writeDouble(lng);
     }
@@ -145,10 +167,15 @@ public class Printer implements Parcelable {
     private Printer(Parcel in) {
         id = in.readString();
         location = in.readString();
+        description = in.readString();
         type = in.readString();
-        boolean[] boolArr = new boolean[1];
+        boolean[] boolArr = new boolean[5];
         in.readBooleanArray(boolArr);
-        status = boolArr[0];
+        paperStatus = boolArr[0];
+        jamStatus = boolArr[1];
+        inkStatus = boolArr[2];
+        computerStatus = boolArr[3];
+        status = boolArr[4];
         lat = in.readDouble();
         lng = in.readDouble();
     }

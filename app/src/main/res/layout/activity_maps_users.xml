@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
 
     tools:context="com.example.jl.lilprinter.activity.MapsActivity">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="gone" />
 
     <fragment
         android:id="@+id/map"
@@ -15,32 +20,36 @@
         android:layout_height="match_parent"
         map:cameraTargetLat="33.7756"
         map:cameraTargetLng="-84.3963"
-        map:cameraZoom="16"/>
+        map:cameraZoom="16" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/lock" />
+        app:srcCompat="@drawable/lock"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_gravity="bottom|right" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/list" />
+        app:srcCompat="@drawable/list"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="bottom|left"/>
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/map" />
+        app:srcCompat="@drawable/map"
+        android:layout_marginBottom="7dp"
+        android:layout_gravity="bottom|center"/>
+
+
 </FrameLayout>
 
 

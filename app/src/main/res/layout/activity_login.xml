@@ -15,20 +15,22 @@
         android:id="@+id/image_gt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="175dp"
+        android:layout_marginTop="115dp"
         android:adjustViewBounds="true"
         android:src="@drawable/georgia_tech"
         android:layout_centerHorizontal="true"/>
 
     <EditText
         android:id="@+id/editTxt_logUsername"
-        android:hint="Username"
+        android:hint="Email"
         android:inputType="textPersonName"
         android:layout_below="@+id/image_gt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        style="EditTextStyle"
-         />
+        style="@style/EditTextStyle"
+        android:textStyle="bold"
+        android:fontFamily="monospace"/>
 
     <EditText
         android:id="@+id/editTxt_logPassword"
@@ -36,21 +38,22 @@
         android:inputType="textPassword"
         android:layout_below="@+id/editTxt_logUsername"
         android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        style="EditTextStyle"/>
+        style="@style/EditTextStyle"
+        android:textStyle="bold"
+        android:fontFamily="monospace"/>
 
     <Button
         android:id="@+id/btn_logLogin"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
         android:text="login"
         android:layout_below="@+id/editTxt_logPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:typeface="monospace"
-        android:background="#fefec8"/>
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:fontFamily="monospace" />
 
 
 </RelativeLayout>
